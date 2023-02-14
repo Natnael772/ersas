@@ -7,6 +7,7 @@ exports.postLogin = (req, res, next) => {};
 exports.postSignup = (req, res, next) => {
   const { fname, lname, username, bio, links, confirmPwd, email, password } =
     req.body;
+
   const user = new User({
     fname: fname,
     lname: lname,
