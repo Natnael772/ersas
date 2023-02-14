@@ -7,6 +7,8 @@ const blogSchema = new Schema({
   subcategory: String,
   title: String,
   description: String,
+  posted: Date,
+  updated: Date,
   claps: {
     number: Number,
     clappers: {
@@ -21,4 +23,4 @@ const blogSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Blog", blogSchema)
+module.exports = mongoose.model("Blog", blogSchema);
