@@ -14,6 +14,7 @@ const userSchema = new Schema({
     required: true,
   },
   bio: String,
+  // links: String,
   links: {
     twitter: String,
     facebook: String,
