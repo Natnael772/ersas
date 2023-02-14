@@ -1,9 +1,12 @@
-exports.getUsers = (req,res,next)=>{
+const Admin = require("../models/admin");
+const User = require("../models/user");
 
-}
-exports.getUser = (req,res,next)=>{
-    
-}
-exports.deleteUsers = (req,res,next)=>{
-
-} 
+exports.getUsers = async (req, res, next) => {
+  const users = await User.find();
+  res.json({
+    status: "success",
+    users: users,
+  });
+};
+exports.getUser = (req, res, next) => {};
+exports.deleteUsers = (req, res, next) => {};

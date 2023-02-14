@@ -5,12 +5,14 @@ const bodyparser = require("body-parser");
 
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
 
 app.use(bodyparser.urlencoded());
 app.use(express.json());
 
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", authRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 const PORT = process.env.PORT || 8080;
 
