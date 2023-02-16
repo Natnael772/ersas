@@ -18,4 +18,26 @@ exports.getUser = async (req, res, next) => {
     user: user,
   });
 };
-exports.deleteUsers = (req, res, next) => {};
+
+exports.updateUser = async (req, res, next) => {
+  const { fname, lname, username, bio, links, email } = req.body;
+  const userId = req.params.userId;
+  const user = await User.findById(userId);
+  user.fname = fname;
+  user.lname = lname;
+  user.username = username;
+  user.bio = bio;
+  user.links = links;
+  user.email = email;
+  await user.save();
+  res.json({ status: "success", user: user });
+};
+
+exports.deleteUser = async (req, res, next) => {
+  const userId = req.params.userId;
+  const user = await User.findByIdAndRemove(userId);
+  res.json({
+    status: "success",
+    user: user,
+  });
+};

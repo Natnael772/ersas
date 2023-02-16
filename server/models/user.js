@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const userSchema = new Schema({
   fname: {
     type: String,
@@ -23,10 +24,29 @@ const userSchema = new Schema({
   photo: String,
   email: String,
   password: String,
+  followers: [{ type: Schema.Types.ObjectId }],
+  // blogs: [{ blogId: Schema.Types.ObjectId, ref: "Blogs" }],
 });
 
 module.exports = mongoose.model("User", userSchema);
 
+// clappers: [{ clapperId: Schema.Types.ObjectId }],
+// comments: [{ commentId: Schema.Types.ObjectId, comment: String }],
+// claps: {
+//   number: Number,
+//   clappers: [
+//     {
+//       clapperId: Schema.Types.ObjectId,
+//     },
+//   ],
+// },
+// blogs: [
+//   {
+//     quantity: Number,
+//     [{blogId: Schema.Types.ObjectId}],
+//   },
+
+// ],
 // - id
 // - First Name
 // - Last Name

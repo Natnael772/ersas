@@ -3,24 +3,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
+  blogId: Number,
   category: String,
   subcategory: String,
   title: String,
   description: String,
+  body: String,
   posted: Date,
   updated: Date,
-  claps: {
-    number: Number,
-    clappers: {
-      name: String,
+  claps: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    comments: {
-      number: Number,
-      commenters: {
-        name: String,
-      },
+  ],
+
+  comments: [
+    {
+      text: String,
+      type: Schema.Types.ObjectId,
+      ref: "User",
+
+      // votes: Schema.Types.ObjectId,
     },
-  },
+  ],
 });
 
 module.exports = mongoose.model("Blog", blogSchema);

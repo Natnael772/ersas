@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const User = require("../models/user");
 
-exports.postLogin = (req, res, next) => {};
+exports.postLogin = (req, res, next) => {
+  
+
+};
 
 exports.postSignup = (req, res, next) => {
   const { fname, lname, username, bio, links, confirmPwd, email, password } =
