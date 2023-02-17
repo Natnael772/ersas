@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Blog = require("../models/blog");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -24,8 +25,8 @@ const userSchema = new Schema({
   photo: String,
   email: String,
   password: String,
-  followers: [{ type: Schema.Types.ObjectId }],
-  // blogs: [{ blogId: Schema.Types.ObjectId, ref: "Blogs" }],
+  followers: { type: Schema.Types.ObjectId },
+  blog: { type: Schema.Types.ObjectId, ref: "Blog" },
 });
 
 module.exports = mongoose.model("User", userSchema);

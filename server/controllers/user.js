@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const User = require("../models/user");
 const Blog = require("../models/blog");
-exports.getBlogs = (req, res, next) => {};
+
+exports.getBlogs = async (req, res, next) => {
+  const blogs = await Blog.find();
+  res.json({ message: "success", blogs: blogs });
+};
 
 exports.getBlog = (req, res, next) => {};
 
