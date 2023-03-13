@@ -45,5 +45,13 @@ li a {
   font-size: 1.4rem;
 }
 .btn-signup {
-  
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #191919;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+  transition: background-color 300ms linear, color 300ms linear;
+}
+.btn-signup:hover {
+  background-color: #000;
 }
