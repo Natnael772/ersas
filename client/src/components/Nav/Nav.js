@@ -1,10 +1,10 @@
+import "./Nav.css";
 const Nav = () => {
   return (
     <div className="nav-main-container">
       <h2 className="nav-logo">Ersas</h2>
       <ul className="nav-menus-container">
         <li>
-          {" "}
           <a href="#" className="nav-links">
             Home
           </a>
