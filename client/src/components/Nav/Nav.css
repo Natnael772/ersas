@@ -66,11 +66,19 @@ li a {
 .btn-signup:hover {
   background-color: #000;
 }
+.nav-hamburger {
+  font-size: 2rem;
+  display: none;
+}
 
 /* Tablet */
 @media (max-width: 800px) and (min-width: 660px) {
   html {
     font-size: 9px;
+  }
+  .nav-hamburger {
+    display: block;
+    /* align-self:end */
   }
 }
 /* Mobile  */
