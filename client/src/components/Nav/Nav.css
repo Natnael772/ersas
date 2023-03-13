@@ -5,25 +5,45 @@
 }
 html {
   font-size: 10px;
+  font-family: "Poppins", sans-serif;
 }
-
-.nav-main-container {
-  width: 100%;
-  padding: 2rem 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-menus-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
-}
-
 ul {
   list-style: none;
 }
 li a {
   display: block;
+}
+
+.nav-main-container {
+  width: 100%;
+  padding: 2rem 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+.nav-menus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.nav-links {
+  font-size: 1.4rem;
+}
+.nav-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn-login {
+  font-size: 1.4rem;
+}
+.btn-signup {
+  
 }

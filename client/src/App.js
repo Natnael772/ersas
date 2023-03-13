@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <NavT />
+      {/* <NavT /> */}
     </div>
   );
 }
