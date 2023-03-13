@@ -20,7 +20,10 @@ li a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-image: linear-gradient(to right, #f1a7f1, #fad0c4);
+  /* background-image: linear-gradient(to right, #e5bdf6, #d8dede); */
 }
+
 .nav-logo {
   font-size: 2.6rem;
   font-weight: 700;
@@ -34,6 +37,10 @@ li a {
 .nav-links {
   font-size: 1.4rem;
 }
+.nav-links:hover {
+  color: #191919e1;
+  transition: 0.2s ease-in-out;
+}
 .nav-buttons-container {
   display: flex;
   align-items: center;
@@ -43,6 +50,10 @@ li a {
 
 .btn-login {
   font-size: 1.4rem;
+}
+.btn-login:hover {
+  color: #191919e1;
+  transition: 0.2s ease-in-out;
 }
 .btn-signup {
   font-size: 1.4rem;
@@ -54,4 +65,17 @@ li a {
 }
 .btn-signup:hover {
   background-color: #000;
+}
+
+/* Tablet */
+@media (max-width: 800px) and (min-width: 660px) {
+  html {
+    font-size: 9px;
+  }
+}
+/* Mobile  */
+@media (max-width: 660px) {
+  html {
+    font-size: 8px;
+  }
 }
