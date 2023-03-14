@@ -11,13 +11,15 @@ const BlogsByCat = () => {
           <a href="#">Illustration</a>
         </h2>
         <h2 className="blog-title">
-          <a href="#">Build a website in minutes with Adobe Templates</a>
+          <a href="#">
+            Build a website in minutes with Adobe Templates for free
+          </a>
         </h2>
         <div className="user-data-container">
-          {/* <img className="user-photo" src={wp1} /> */}
+          <img className="user-photo" src={wp1} />
           <h2 className="user-fullname">Natnael Deyas</h2>
-          <h2 className="date-posted">11/13/2019</h2>
         </div>
+        <h2 className="date-posted">11/13/2019</h2>
       </div>
     </div>
   );

@@ -35,3 +35,10 @@
   color: rgba(0, 0, 0, 0.5);
   transition: 0.3s all ease;
 }
+
+.user-photo {
+  margin-top: 2rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+}
