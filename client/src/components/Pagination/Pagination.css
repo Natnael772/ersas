@@ -4,7 +4,7 @@
 
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 3rem;
 }
 .page-numbers {
@@ -24,7 +24,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  /* border: 1px solid #e6e6e6; */
+  border: 1px solid #e6e6e6;
 }
 .page-numbers li a:hover {
   transition: 0.3s all ease;
@@ -34,7 +34,37 @@
 .page-numbers .active {
   background-color: #ffd369;
 }
-
+.arrow-container {
+  font-size: 2rem !important;
+  color: #808080;
+  /* color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  border: 1px solid #e6e6e6;
+}
+.left-arrow {
+  line-height: 2rem;
+  font-size: 2rem;
+  color: #808080;
+  /* color: red; */
+  /* display: block; */
+  /* align-self: center; */
+  /* text-align: center; */
+  /* width: 4rem;
+  height: 4rem; */
+}
+.arrow-container:hover {
+  transition: 0.3s all ease;
+  border: none;
+  background-color: #ffd369;
+}
 /* .page-numbers li a {
   align-self: center;
   justify-self: center;
