@@ -1,4 +1,17 @@
-import { wp1, wp2, wp3, wp4, wp5, wp6 } from "../../constants/images";
+import {
+  wp1,
+  wp2,
+  wp3,
+  wp4,
+  wp5,
+  wp6,
+  wp7,
+  wp8,
+  wp9,
+  wp10,
+  wp11,
+  wp12,
+} from "../../constants/images";
 import "./BlogsByCat.css";
 const BlogsByCat = () => {
   return (
