@@ -6,10 +6,13 @@
   /* justify-content: space-between; */
   gap: 4rem;
 }
+.blog-description-container {
+  padding-top: 1rem;
+}
 
 .img-blogbycat {
   display: block;
-  width: auto;
+  width: 61.8rem;
   height: 40rem;
 }
 .blog-category {
@@ -39,8 +42,10 @@
 .user-data-container {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.8rem;
   margin-top: 2rem;
+}
+.user-data-sub-container {
 }
 .user-photo {
   /* margin-top: 2rem; */
@@ -50,4 +55,8 @@
 }
 .user-fullname {
   font-size: 1.4rem;
+}
+.date-posted {
+  margin-top: 2rem;
+  font-size: 1.1rem;
 }
