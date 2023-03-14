@@ -53,7 +53,8 @@ app.listen(PORT, () => {
       "mongodb+srv://natnael:root@cluster0.gy0a5.mongodb.net/ersasdb?retryWrites=true&w=majority"
     )
     .then((res) => {
-      run();
+      console.log("Connected");
+      // run();
       // console.log(res);
     })
     .catch((err) => {
