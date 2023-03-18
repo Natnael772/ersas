@@ -63,6 +63,8 @@
   transition: 0.3s all ease-in-out;
 }
 .info-link {
+  display: flex;
+  align-items: center;
   font-size: 1.6rem;
   color: #fff;
   padding-bottom: 1rem;
@@ -70,4 +72,18 @@
 .info-link:hover {
   color: #ffd369;
   transition: 0.3s all ease-in-out;
+}
+/* .footer-arrow {
+  font-weight: 500; 
+  color: #fff;
+  font-size: 1.1rem;
+  display: inline;
+  margin-right: 0.5rem;
+} */
+.contact-info-con {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+  margin-bottom: 1rem;
 }

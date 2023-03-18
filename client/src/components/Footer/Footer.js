@@ -1,3 +1,9 @@
+import { AiOutlineRight } from "react-icons/ai";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { AiFillMail } from "react-icons/ai";
+import { GrMail } from "react-icons/gr";
 import {
   wp1,
   wp2,
@@ -55,9 +61,10 @@ const Footer = () => {
         <div className="infos-container">
           <ul className="info-links">
             <li>
-              <a href="#" className="info-link">
+              {/* <a href="#" className="info-link">
+                <AiOutlineRight className="footer-arrow" />
                 Home
-              </a>
+              </a> */}
             </li>
             <li>
               <a href="#" className="info-link">
@@ -81,12 +88,16 @@ const Footer = () => {
         <h2 className="footer-title">Have any questions?</h2>
         <div className="contact-infos">
           <div className="contact-info-con">
+            <FaMapMarkerAlt className="footer-icon" />
             <h2 className="contact-info">Bole, Addis Ababa, Ethiopia</h2>
           </div>
           <div className="contact-info-con">
+            <FaPhoneAlt className="footer-icon" />
+
             <h2 className="contact-info">+251 932 576 834</h2>
           </div>
           <div className="contact-info-con">
+            <GrMail className="footer-icon" />
             <h2 className="contact-info">info@mydomain.com</h2>
           </div>
         </div>
