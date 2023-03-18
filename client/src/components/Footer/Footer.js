@@ -28,12 +28,12 @@ const Footer = () => {
       <div className="footer-latest">
         <h2 className="footer-title">Latest Blog</h2>
         <div className="cards-container">
-          <img className="footer-img" src={wp1} />
+          <img className="footer-img" src={wp4} />
           <div className="desc-container">
             <h2 className="footer-blog-title">
               Even all the powerful pointing has no control about
             </h2>
-            <h3 className="footer-blog-date">Oct16,2019</h3>
+            <h3 className="footer-blog-date">Oct 16, 2019 . Admin</h3>
           </div>
         </div>
       </div>
