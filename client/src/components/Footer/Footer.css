@@ -9,7 +9,7 @@
   /* background-color: #222831;
    */
   background-color: #222831;
-  padding: 5rem 10rem 3rem 10rem;
+  padding: 6rem 12rem 3rem 12rem;
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
@@ -98,4 +98,23 @@
 }
 .blurry {
   color: #ffffffb3;
+}
+/* Mobile  */
+@media (max-width: 600px) {
+  html {
+    font-size: 8px;
+  }
+  .footer-intro {
+    width: 100%;
+  }
+
+  .footer-main-container {
+    padding: 6rem 8rem 3rem 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .copyright {
+    font-size: 12px;
+  }
 }
