@@ -5,6 +5,7 @@ import Landing from "./components/Landing/Landing";
 import BlogsByCat from "./components/BlogsByCat/BlogsByCat";
 import Pagination from "./components/Pagination/Pagination";
 import NavT from "./NavT";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       {/* <Landing /> */}
       <BlogsByCat />
       <Pagination />
+      <Footer />
+
       {/* <NavT /> */}
     </div>
   );

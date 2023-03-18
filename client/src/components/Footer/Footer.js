@@ -1,8 +1,11 @@
+import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer-main-container">
       <div className="footer-intro">
-        <h2 className="footer-logo">Ersas</h2>
+        <h2 className="footer-logo">
+          Ers<span className="spanned">as</span>.
+        </h2>
         <p className="desc">
           Far far away, behind the word mountains, far from the countries
           Vokalia and Consonantia, there live the blind texts.
@@ -20,3 +23,4 @@ const Footer = () => {
     </div>
   );
 };
+export default Footer;
