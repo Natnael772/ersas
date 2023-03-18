@@ -62,10 +62,10 @@ const Footer = () => {
           <div className="infos-container">
             <ul className="info-links">
               <li>
-                {/* <a href="#" className="info-link">
-                <AiOutlineRight className="footer-arrow" />
-                Home
-              </a> */}
+                <a href="#" className="info-link">
+                  {/* <AiOutlineRight className="footer-arrow" /> */}
+                  Home
+                </a>
               </li>
               <li>
                 <a href="#" className="info-link">
@@ -90,7 +90,9 @@ const Footer = () => {
           <div className="contact-infos">
             <div className="contact-info-con">
               <FaMapMarkerAlt className="footer-icon" />
-              <h2 className="contact-info">Bole, Addis Ababa, Ethiopia</h2>
+              <h2 className="contact-info">
+                <span className="blurry">Bole, Addis Ababa, Ethiopia</span>
+              </h2>
             </div>
             <div className="contact-info-con">
               <FaPhoneAlt className="footer-icon" />
