@@ -117,4 +117,11 @@
   .copyright {
     font-size: 12px;
   }
+  .cards-container {
+    /* display: flex; */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    /* margin-bottom: 2rem; */
+  }
 }
