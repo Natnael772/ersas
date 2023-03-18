@@ -23,6 +23,7 @@
 .footer-title {
   color: #ffffff;
   font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .desc {
@@ -31,4 +32,9 @@
   padding-top: 2rem;
   color: #ffffffb3;
   font-size: 1.5rem;
+}
+.footer-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.25rem;
 }
