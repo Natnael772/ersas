@@ -38,6 +38,7 @@
   /* align-items: center; */
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 .desc-container {
   color: #ffffffb3;
@@ -46,6 +47,7 @@
 .footer-img {
   width: 8rem;
   height: 8rem;
+  object-fit: cover;
   border-radius: 0.25rem;
 }
 .footer-blog-title {
@@ -53,5 +55,9 @@
   padding-bottom: 1rem;
 }
 .footer-blog-date {
+  color: #808080;
   font-size: 1.1rem;
+}
+.footer-blog-link:hover {
+  color: ;
 }
