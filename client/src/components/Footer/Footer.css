@@ -1,12 +1,15 @@
 .spanned {
   color: #ffd369;
 }
+.footer {
+  background-color: #222831;
+}
 .footer-main-container {
   font-size: 1.6rem;
   /* background-color: #222831;
    */
   background-color: #222831;
-  padding: 5rem 10rem;
+  padding: 5rem 10rem 3rem 10rem;
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
@@ -86,4 +89,10 @@
   gap: 1rem;
   color: #fff;
   margin-bottom: 1rem;
+}
+.copyright {
+  font-size: 16px;
+  color: #ffffffb3;
+  text-align: center;
+  padding-bottom: 5rem;
 }
