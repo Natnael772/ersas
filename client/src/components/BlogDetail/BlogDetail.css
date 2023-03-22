@@ -1,5 +1,5 @@
 .main-container {
-  padding: 2rem 10rem;
+  padding: 2rem 14rem;
   color: #292929;
 }
 .user-container-small {
@@ -34,9 +34,9 @@
   transition: 0.3s ease-in-out;
 }
 .blog-t {
-  font-size: 3.2rem;
+  font-size: 3.3rem;
   color: #292929;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 10;
   line-height: 1.2;
   margin-bottom: 2rem;
@@ -47,6 +47,49 @@
   margin-bottom: 1.5rem;
   line-height: 1.8;
 }
-.blog-detail-conteiner {
+
+.user-img-medium {
+  /* width: 10rem;
+  height: 10rem; */
+  /* border-radius: 50%; */
+  width: 13rem;
+  height: 13rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sub-container {
+  width: 100%;
   display: flex;
+  justify-content: flex-start;
+  gap: 10rem;
+}
+.sidebars-container {
+  width: 30%;
+  /* background-color: red; */
+  padding: 0 3rem;
+}
+.blog-detail-container {
+  width: 75%;
+}
+.username-medium {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.followers-medium {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.bios-medium {
+  margin-bottom: 1.4rem;
+}
+.btn-follow-big {
+  background-color: #000;
+  border: none;
+  color: #fff;
+  padding: 1.2rem 3rem;
+  border-radius: 2rem;
+  font-size: 1.6rem;
 }
