@@ -66,6 +66,7 @@ const BlogDetail = () => {
             <h3 className="bios-medium">
               Self-taught fullstack developer based in Ethipia
             </h3>
+
             <button className="btn-follow-big">Follow</button>
           </div>
         </div>

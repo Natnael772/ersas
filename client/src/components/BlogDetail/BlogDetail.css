@@ -49,12 +49,12 @@
 }
 
 .user-img-medium {
-  /* width: 10rem;
-  height: 10rem; */
-  /* border-radius: 50%; */
-  width: 13rem;
-  height: 13rem;
-  border-radius: 2rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  /* width: 13rem;
+  height: 13rem; */
+  /* border-radius: 2rem; */
   margin-bottom: 1rem;
 }
 
@@ -62,34 +62,35 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  gap: 10rem;
+  gap: 15rem;
 }
 .sidebars-container {
   width: 30%;
   /* background-color: red; */
-  padding: 0 3rem;
+  /* padding: 0 3rem; */
 }
 .blog-detail-container {
   width: 75%;
 }
 .username-medium {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1;
 }
 .followers-medium {
-  font-weight: 600;
+  /* font-weight: 600; */
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 .bios-medium {
   margin-bottom: 1.4rem;
+  font-size: 1.1rem;
 }
 .btn-follow-big {
   background-color: #000;
   border: none;
   color: #fff;
-  padding: 1.2rem 3rem;
+  padding: 1rem 2.2rem;
   border-radius: 2rem;
   font-size: 1.6rem;
 }
