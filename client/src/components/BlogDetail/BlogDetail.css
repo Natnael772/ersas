@@ -12,12 +12,12 @@
   gap: 1rem;
 }
 .user-img-small {
-  width: 5rem;
-  height: 5rem;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
 }
 .username-small {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .btn-follow-small {
   background-color: #000;
@@ -25,4 +25,15 @@
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 2rem;
+  font-size: 1.2rem;
+}
+.btn-follow-small:hover {
+  background-color: #000000e0;
+  transition: 0.3s ease-in-out;
+}
+.dot {
+  position: absolute;
+  right: 2rem;
+  top: 3rem;
+  font-size: 3rem;
 }
