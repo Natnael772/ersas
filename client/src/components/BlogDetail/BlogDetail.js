@@ -23,13 +23,37 @@ const BlogDetail = () => {
             <div className="user-desc-small">
               <h2 className="username-small">Natnael Deyas</h2>
               <p className="infos-small">
-                Jan 20 <span className="dot">.</span> 13min read
+                Jan 20 <span className="dot">,</span> 13min read
               </p>
             </div>
             <button className="btn-follow-small">Follow</button>
           </div>
         </div>
         <div className="links-container-small"></div>
+      </div>
+      <div className="blog-detail-container">
+        <div className="blog-detail">
+          <h1 className="blog-t">
+            Building a startup from Scratch: My mistake as CTO
+          </h1>
+          <p className="blog-p">
+            When I was first approached to help build the technical side of a
+            new startup, I had yet to learn what I was getting into. I was
+            invited by a friend to audit the solution that the previous
+            technical lead and developer had started. Still, due to unforeseen
+            circumstances, both of them decided to leave the project. I was left
+            with a barely started product and no team to continue the work.
+          </p>
+          <p className="blog-paragraph">
+            When I was first approached to help build the technical side of a
+            new startup, I had yet to learn what I was getting into. I was
+            invited by a friend to audit the solution that the previous
+            technical lead and developer had started. Still, due to unforeseen
+            circumstances, both of them decided to leave the project. I was left
+            with a barely started product and no team to continue the work.
+          </p>
+        </div>
+        <div className="sidebars-container"></div>
       </div>
     </div>
   );
