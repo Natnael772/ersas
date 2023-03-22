@@ -44,7 +44,7 @@ const BlogDetail = () => {
             circumstances, both of them decided to leave the project. I was left
             with a barely started product and no team to continue the work.
           </p>
-          <p className="blog-paragraph">
+          <p className="blog-p">
             When I was first approached to help build the technical side of a
             new startup, I had yet to learn what I was getting into. I was
             invited by a friend to audit the solution that the previous
@@ -53,7 +53,17 @@ const BlogDetail = () => {
             with a barely started product and no team to continue the work.
           </p>
         </div>
-        <div className="sidebars-container"></div>
+        <div className="sidebars-container">
+          <div className="userbox-con">
+            <img className="user-img-medium" src={wp2} />
+            <h2 className="username-medium">Natnael Deyas</h2>
+            <h3 className="followers-medium">297K followers</h3>
+            <h3 className="bios-medium">
+              Self-taught fullstack developer based in Ethipia
+            </h3>
+            <button className="btn-follow-big">Follow</button>
+          </div>
+        </div>
       </div>
     </div>
   );
