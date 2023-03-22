@@ -6,14 +6,16 @@ import BlogsByCat from "./components/BlogsByCat/BlogsByCat";
 import Pagination from "./components/Pagination/Pagination";
 import NavT from "./NavT";
 import Footer from "./components/Footer/Footer";
+import BlogDetail from "./components/BlogDetail/BlogDetail";
 
 function App() {
   return (
     <div>
-      {/* <Nav /> */}
+      <Nav />
       {/* <Landing /> */}
-      <BlogsByCat />
-      <Pagination />
+      {/* <BlogsByCat /> */}
+      {/* <Pagination /> */}
+      <BlogDetail />
       <Footer />
 
       {/* <NavT /> */}

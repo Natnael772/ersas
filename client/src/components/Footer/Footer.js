@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-questions">
-          <h2 className="footer-title">Have any questions?</h2>
+          <h2 className="footer-title">Have a Questions?</h2>
           <div className="contact-infos">
             <div className="contact-info-con">
               <FaMapMarkerAlt className="footer-icon" />
