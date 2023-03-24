@@ -30,3 +30,14 @@
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+.btn-follow {
+  display: inline-block;
+  /* width: auto; */
+  margin-top: 2rem;
+  background-color: #191919;
+  padding: 1rem 3rem;
+  color: #fff;
+  font-size: 1.4rem;
+  /* border-radius: 0.4rem; */
+  border-radius: 2rem;
+}

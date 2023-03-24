@@ -38,7 +38,9 @@ const User = () => {
                 225k following
               </a>
             </div>
-            <button className="btn-follow">Follow</button>
+            <a href="#" className="btn-follow">
+              Follow
+            </a>
           </div>
         </div>
       </div>
