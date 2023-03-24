@@ -30,8 +30,8 @@ const User = () => {
             <img className="user-img-large" src={beard2} />
           </div>
           <div className="user-data-con">
-            <h2 className="user-title">Natnael Deyas</h2>
-            <p className="user-bio">Fullstack developer based in Ethiopia</p>
+            <h2 className="user-title-b">Natnael Deyas</h2>
+            <p className="user-bio-b">Fullstack developer based in Ethiopia</p>
             <div className="follow-con">
               <a href="#" className="follow-num">
                 251K followers
