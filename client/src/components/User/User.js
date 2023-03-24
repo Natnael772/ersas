@@ -15,6 +15,9 @@ import {
   beard2,
 } from "../../constants/images";
 import Nav from "../Nav/Nav";
+import UserBlog from "./UserBlog";
+import UserBlogs from "./UserBlogs";
+
 import "./User.css";
 const User = () => {
   return (
@@ -43,6 +46,7 @@ const User = () => {
             </a>
           </div>
         </div>
+        <UserBlogs />
       </div>
     </>
   );

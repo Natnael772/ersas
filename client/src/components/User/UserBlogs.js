@@ -1,4 +1,4 @@
-import "./User.css";
+import "./UserBlogs.css";
 const UserBlogs = () => {
   return (
     <div className="userblogs-con">
