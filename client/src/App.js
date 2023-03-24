@@ -7,6 +7,7 @@ import Pagination from "./components/Pagination/Pagination";
 import NavT from "./NavT";
 import Footer from "./components/Footer/Footer";
 import BlogDetail from "./components/BlogDetail/BlogDetail";
+import User from "./components/User/User";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       {/* <Landing /> */}
       {/* <BlogsByCat /> */}
       {/* <Pagination /> */}
-      <BlogDetail />
-      <Footer />
+      {/* <BlogDetail /> */}
+      <User />
+      {/* <Footer /> */}
 
       {/* <NavT /> */}
     </div>

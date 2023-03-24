@@ -1,0 +1,32 @@
+/* .main-container{
+    padding : 
+} */
+.user-img-large {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-container {
+  display: flex;
+  align-items: center;
+
+  gap: 3rem;
+}
+
+.user-title {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.follow-con {
+  display: flex;
+  gap: 0.7rem;
+}
+.follow-num {
+  font-size: 1.4rem;
+}
+.user-bio {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
