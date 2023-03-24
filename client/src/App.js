@@ -14,11 +14,11 @@ function App() {
     <div>
       <Nav />
       {/* <Landing /> */}
-      {/* <BlogsByCat /> */}
+      <BlogsByCat />
       {/* <Pagination /> */}
       {/* <BlogDetail /> */}
       <User />
-      {/* <Footer /> */}
+      <Footer />
 
       {/* <NavT /> */}
     </div>

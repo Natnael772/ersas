@@ -46,8 +46,8 @@ const User = () => {
             </a>
           </div>
         </div>
-        <UserBlogs />
       </div>
+      <UserBlogs />
     </>
   );
 };
