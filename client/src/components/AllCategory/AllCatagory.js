@@ -17,11 +17,11 @@ const AllCategory = () => {
   return (
     <div className="allcat-container-main">
       <div className="headers-con">
-        <h2 className="allcat-header">Blog Category</h2>
+        <h2 className="allcat-header"> Category</h2>
         <p className="allcat-desc">Choose your desired categories</p>
       </div>
       <div className="cat-choice-con">
-        <ul className="">
+        <ul className="cat-choice-con-ul">
           <li>
             <a href="#" className="cat-choice">
               All
