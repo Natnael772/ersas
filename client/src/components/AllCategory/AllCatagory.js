@@ -75,7 +75,9 @@ const AllCategory = () => {
           <div className="cat-user-con">
             <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
-              <h2 className="cat-userinfo-name">Sergy Campbell</h2>
+              <h2 className="cat-userinfo-name">
+                <a href="#">Sergy Campbell</a>
+              </h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
             </div>
           </div>
@@ -95,7 +97,9 @@ const AllCategory = () => {
           <div className="cat-user-con">
             <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
-              <h2 className="cat-userinfo-name">Sergy Campbell</h2>
+              <h2 className="cat-userinfo-name">
+                <a href="#">Sergy Campbell</a>
+              </h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
             </div>
           </div>
@@ -115,7 +119,9 @@ const AllCategory = () => {
           <div className="cat-user-con">
             <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
-              <h2 className="cat-userinfo-name">Sergy Campbell</h2>
+              <h2 className="cat-userinfo-name">
+                <a href="#">Sergy Campbell</a>
+              </h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
             </div>
           </div>

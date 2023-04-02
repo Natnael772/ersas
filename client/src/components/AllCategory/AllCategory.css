@@ -41,7 +41,12 @@
   /* height: 40rem; */
   border-radius: 0.7rem;
   width: 100%;
+  /* object-fit: cover;
+  overflow: hidden; */
 }
+/* .cat-blog-img:hover {
+  transform: scale(1.5);
+} */
 .cat-blog-date {
   color: #999999;
   font-weight: 400;
@@ -77,6 +82,7 @@
   height: 4.5rem;
   border-radius: 50%;
 }
+
 .cat-userinfo-name {
   font-size: 1.3rem;
   font-weight: 500;
