@@ -84,7 +84,7 @@ li a {
   }
 
   .nav-menus-container {
-    /* display: none; */
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -141,7 +141,7 @@ li a {
     display: none;
   }
   .nav-hamburger {
-    display: block;
+    /* display: block; */
     margin-right: 10rem;
     /* align-self:end */
   }

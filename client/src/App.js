@@ -8,16 +8,20 @@ import NavT from "./NavT";
 import Footer from "./components/Footer/Footer";
 import BlogDetail from "./components/BlogDetail/BlogDetail";
 import User from "./components/User/User";
+import Login from "./components/Login/Login";
+import Signup from "./components/Login/Signup";
 
 function App() {
   return (
     <div>
       <Nav />
+      <Login />
+
       {/* <Landing /> */}
-      <BlogsByCat />
+      {/* <BlogsByCat /> */}
       {/* <Pagination /> */}
       {/* <BlogDetail /> */}
-      <User />
+      {/* <User /> */}
       <Footer />
 
       {/* <NavT /> */}
