@@ -3,11 +3,11 @@ const Login = () => {
   return (
     <div className="container-main">
       <div className="container-signup">
-        <h2 className="signup-title">New to our Shop?</h2>
+        <h2 className="signup-title">New to our website?</h2>
 
         <p className="signup-description">
-          There are advances being made in science and technology everyday, and
-          a good example of this is the
+          This is a website where you can write and read blogs and various
+          contents based on your preference.
         </p>
         <button className="signup-btn">Create an account</button>
       </div>
