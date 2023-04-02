@@ -18,11 +18,11 @@ function App() {
       <Login />
       <Signup />
 
-      {/* <Landing /> */}
-      {/* <BlogsByCat /> */}
-      {/* <Pagination /> */}
-      {/* <BlogDetail /> */}
-      {/* <User /> */}
+      <Landing />
+      <BlogsByCat />
+      <Pagination />
+      <BlogDetail />
+      <User />
       <Footer />
 
       {/* <NavT /> */}
