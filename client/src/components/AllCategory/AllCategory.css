@@ -66,3 +66,19 @@
   font-size: 1.2rem;
   margin: 0 0 1.5rem;
 }
+.cat-user-con {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cat-user-img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+.cat-userinfo-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.3;
+}

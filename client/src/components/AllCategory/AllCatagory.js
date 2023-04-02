@@ -73,7 +73,7 @@ const AllCategory = () => {
             Vokalia and Consonantia, there live the blind here here ...
           </p>
           <div className="cat-user-con">
-            <img className="cat-user-img" />
+            <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
               <h2 className="cat-userinfo-name">Sergy Campbell</h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
@@ -93,7 +93,7 @@ const AllCategory = () => {
             Vokalia and Consonantia, there live the blind here here ...
           </p>
           <div className="cat-user-con">
-            <img className="cat-user-img" />
+            <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
               <h2 className="cat-userinfo-name">Sergy Campbell</h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
@@ -113,7 +113,7 @@ const AllCategory = () => {
             Vokalia and Consonantia, there live the blind here here ...
           </p>
           <div className="cat-user-con">
-            <img className="cat-user-img" />
+            <img className="cat-user-img" src={wp5} />
             <div className="cat-userinfo-con">
               <h2 className="cat-userinfo-name">Sergy Campbell</h2>
               <p className="cat-userinfo-bio">CEO and Founder</p>
