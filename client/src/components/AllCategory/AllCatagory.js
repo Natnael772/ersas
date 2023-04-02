@@ -23,7 +23,7 @@ const AllCategory = () => {
       <div className="cat-choice-con">
         <ul className="cat-choice-con-ul">
           <li>
-            <a href="#" className="cat-choice">
+            <a href="#" className="cat-choice active">
               All
             </a>
           </li>
