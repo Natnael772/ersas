@@ -6,8 +6,8 @@ const Signup = () => {
         <h2 className="column1-title">Have an account?</h2>
 
         <p className="column1-description">
-          If you have an account, Login here by clicking the button below and
-          continue your blogging journey.
+          Login here by clicking the button below and continue your blogging and
+          content writing journey.
         </p>
         <a href="#" className="column1-btn">
           Login
@@ -49,9 +49,9 @@ const Signup = () => {
         <a href="#" className="column2-btn">
           Signup
         </a>
-        <a href="#" className="forgot-pwd">
-          Have an account?
-        </a>
+        {/* <a href="#" className="forgot-pwd">
+          Any issues?
+        </a> */}
       </div>
     </div>
   );

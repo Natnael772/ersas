@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <Nav />
-      {/* <Login /> */}
+      <Login />
       <Signup />
 
       {/* <Landing /> */}
