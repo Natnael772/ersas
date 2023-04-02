@@ -19,7 +19,7 @@ html {
     ); */
   /* background-size: 200% auto;  */
 }
-.container-signup {
+.container-column1 {
   width: 50%;
   /* background-image: linear-gradient(
       16deg,
@@ -37,14 +37,14 @@ html {
   align-items: center;
   justify-content: center;
 }
-.signup-title {
+.column1-title {
   font-size: 2.4rem;
 }
-.signup-description {
+.column1-description {
   font-size: 1.5rem;
   padding: 2rem 4rem;
 }
-.signup-btn {
+.column1-btn {
   font-family: "Poppins", sans-serif;
   border: 1px solid #ffc2d2;
   border-radius: 5rem;
@@ -60,7 +60,7 @@ html {
   color: #ff3368;
   transition: 0.5s all ease-in-out;
 }
-.container-login {
+.container-column2 {
   font-family: "Poppins", sans-serif;
   /* text-align: center; */
   color: #000;
@@ -70,10 +70,10 @@ html {
   /* align-items: center; */
   justify-content: center;
 }
-.login-title-container {
+.column2-title-container {
   margin-bottom: 4rem;
 }
-.login-title {
+.column2-title {
   /* text-align: center; */
   font-size: 2.6rem;
 }
@@ -112,11 +112,12 @@ html {
     display: block;
     border: none;
   } */
-.login-btn {
+.column2-btn {
   font-family: "Poppins", sans-serif;
   display: block;
 
   padding: 9px 42px;
+  text-align: center;
   border-radius: 50px;
   background-color: #ff3368;
   border: 1px solid #ecfdff;
@@ -131,7 +132,7 @@ html {
   transition: 0.5s;
   cursor: pointer;
 }
-.login-btn:hover {
+.column2-btn:hover {
   color: #fff;
   background-color: red;
   transition: 0.2s ease-in-out;
@@ -157,17 +158,17 @@ html {
     width: 80%;
     flex-direction: column;
   }
-  .container-login {
+  .container-column2 {
     flex-grow: 0;
   }
-  .container-signup {
+  .container-column1 {
     margin-top: 2rem;
     padding-top: 2rem;
 
     width: 100%;
     padding-bottom: 4rem;
   }
-  .login-title-container {
+  .column2-title-container {
     margin-top: 0;
   }
 }
@@ -181,7 +182,7 @@ html {
     width: 90%;
     flex-direction: column;
   }
-  .container-login {
+  .container-column1 {
     flex-grow: 0;
   }
   .container-signup {
@@ -191,7 +192,7 @@ html {
     padding-top: 2rem;
     padding-bottom: 4rem;
   }
-  .login-title-container {
+  .column2-title-container {
     margin-top: 0;
   }
 }

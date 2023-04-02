@@ -2,19 +2,21 @@ import "./Login.css";
 const Login = () => {
   return (
     <div className="container-main">
-      <div className="container-signup">
-        <h2 className="signup-title">New to our website?</h2>
+      <div className="container-column1">
+        <h2 className="column1-title">New to our website?</h2>
 
-        <p className="signup-description">
+        <p className="column1-description">
           This is a website where you can write and read blogs and various
           contents based on your preference.
         </p>
-        <button className="signup-btn">Create an account</button>
+        <a href="#" className="column1-btn">
+          Create an account
+        </a>
       </div>
-      <div className="container-login">
-        <div className="login-title-container">
-          <h2 className="login-title">Welcome back!</h2>
-          <h2 className="login-title">Please Sign in now</h2>
+      <div className="container-column2">
+        <div className="column2-title-container">
+          <h2 className="column2-title">Welcome back!</h2>
+          <h2 className="column2-title">Please Sign in now</h2>
         </div>
         {/* <p className="error-msg">
           Incorrent username or password. Please try again
@@ -36,7 +38,9 @@ const Login = () => {
           />
         </label>
         {/* <input type="checkbox" name="remember" /> Remember me */}
-        <button className="login-btn">Log in</button>
+        <a href="#" className="column2-btn">
+          Log in
+        </a>
         <a href="#" className="forgot-pwd">
           Forgot password?
         </a>
