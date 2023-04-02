@@ -3,20 +3,20 @@ const Signup = () => {
   return (
     <div className="container-main">
       <div className="container-column1">
-        <h2 className="column1-title">New to our website?</h2>
+        <h2 className="column1-title">Have an account?</h2>
 
         <p className="column1-description">
-          This is a website where you can write and read blogs and various
-          contents based on your preference.
+          If you have an account, Login here by clicking the button below and
+          continue your blogging journey.
         </p>
         <a href="#" className="column1-btn">
-          Create an account
+          Login
         </a>
       </div>
       <div className="container-column2">
         <div className="column2-title-container">
-          <h2 className="column2-title">Welcome back!</h2>
-          <h2 className="column2-title">Please Sign in now</h2>
+          <h2 className="column2-title">Welcome dear user!</h2>
+          <h2 className="column2-title">Please Sign up by filling the form.</h2>
         </div>
         {/* <p className="error-msg">
           Incorrent username or password. Please try again
@@ -37,12 +37,20 @@ const Signup = () => {
             className="input"
           />
         </label>
+        <label>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            className="input"
+          />
+        </label>
         {/* <input type="checkbox" name="remember" /> Remember me */}
         <a href="#" className="column2-btn">
-          Log in
+          Signup
         </a>
         <a href="#" className="forgot-pwd">
-          Forgot password?
+          Have an account?
         </a>
       </div>
     </div>
