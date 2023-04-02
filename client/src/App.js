@@ -10,19 +10,21 @@ import BlogDetail from "./components/BlogDetail/BlogDetail";
 import User from "./components/User/User";
 import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
+import AllCategory from "./components/AllCategory/AllCatagory";
 
 function App() {
   return (
     <div>
       <Nav />
-      <Login />
+      {/* <Login />
       <Signup />
 
       <Landing />
       <BlogsByCat />
       <Pagination />
       <BlogDetail />
-      <User />
+      <User /> */}
+      <AllCategory />
       <Footer />
 
       {/* <NavT /> */}
