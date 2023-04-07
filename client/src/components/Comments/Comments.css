@@ -7,10 +7,10 @@
   font-weight: 400;
 }
 .comment-card {
-  width: 50%;
+  width: 60%;
   display: flex;
   gap: 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .comment-img {
@@ -64,7 +64,7 @@
 .reply-card {
   display: flex;
   gap: 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 .reply-img {
   width: 6rem;
