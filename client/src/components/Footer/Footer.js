@@ -1,3 +1,4 @@
+import { Outlet, Link } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -18,6 +19,7 @@ import {
   wp11,
   wp12,
 } from "../../constants/images";
+import BlogDetail from "../BlogDetail/BlogDetail";
 import "./Footer.css";
 const Footer = () => {
   return (
@@ -38,7 +40,7 @@ const Footer = () => {
             <img className="footer-img" src={wp9} />
             <div className="desc-container">
               <h2 className="footer-blog-title">
-                <a href="#" className="footer-blog-link">
+                <a className="footer-blog-link">
                   Even all the powerful pointing has no control about
                 </a>
               </h2>
