@@ -17,11 +17,11 @@ import LeaveComment from "./components/Comments/LeaveComment";
 function App() {
   return (
     <div>
-      {/* <Nav />
-      <Login />
-      <Signup />
+      <Nav />
+      {/* <Login />
+      <Signup /> */}
 
-      <Landing />
+      {/* <Landing />
       <BlogsByCat />
       <Pagination /> */}
       <BlogDetail />

@@ -101,6 +101,19 @@
 .leavecom-form {
   font-size: 1.6rem;
   color: #808080;
+  /* background-color: #f8f9fa; */
+  /* padding: 2rem 2rem; */
+}
+.comm-input {
+  height: 9rem;
+  width: 45%;
+  padding: 1.5rem;
+  border: 0.2rem solid #eceef2;
+  transition: 0.2s ease-in;
+  display: block;
+  outline: none;
+}
+.comm-input:focus {
   background-color: #f8f9fa;
-  padding: 2rem 2rem;
+  /* border: 0.2rem solid #f8f9fa; */
 }
