@@ -38,12 +38,7 @@ const Comments = () => {
                   <img className="reply-img" src={wp2} />
                   <div className="reply-desc-con">
                     <h2 className="reply-user">Natnael Deyas</h2>
-                    <h3
-                      className="reply-date
-                    "
-                    >
-                      November 13, 2019 at 2:00AM
-                    </h3>
+                    <h3 className="reply-date">November 13, 2019 at 2:00AM</h3>
                     <p className="reply-rep">
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                       Pariatur quidem laborum necessitatibus, ipsam impedit
