@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
 import AllCategory from "./components/AllCategory/AllCatagory";
 import Comments from "./components/Comments/Comments";
+import LeaveComment from "./components/Comments/LeaveComment";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Pagination /> */}
       <BlogDetail />
       <Comments />
+      <LeaveComment />
       {/* <User />
       <AllCategory /> */}
       {/* <Footer /> */}
