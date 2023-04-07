@@ -47,9 +47,36 @@
   /* letter-spacing: .1rem; */
   font-weight: 400;
   border-radius: 0.4rem;
+  margin-bottom: 2rem;
 }
 .btn-reply:hover {
   transition: 0.2s all ease-in;
   background-color: #000;
   color: #fff;
+}
+
+/* Replies */
+.reply-img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+.reply-user {
+  color: #000000cc;
+
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.reply-date {
+  color: #cccccc;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+.reply-rep {
+  color: #808080;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
 }

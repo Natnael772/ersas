@@ -44,7 +44,7 @@ const Comments = () => {
                     >
                       November 13, 2019 at 2:00AM
                     </h3>
-                    <p className="reply-com">
+                    <p className="reply-rep">
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                       Pariatur quidem laborum necessitatibus, ipsam impedit
                       vitae autem, eum officia, fugiat saepe enim sapiente iste
