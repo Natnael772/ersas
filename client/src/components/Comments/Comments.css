@@ -40,6 +40,7 @@
 }
 
 .btn-reply {
+  cursor: pointer;
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: #e6e6e6;
@@ -133,5 +134,6 @@
   margin-bottom: 3rem;
 }
 .link-login {
+  cursor: pointer;
   text-decoration: underline;
 }
