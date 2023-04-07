@@ -111,9 +111,20 @@
   border: 0.2rem solid #eceef2;
   transition: 0.2s ease-in;
   display: block;
+  margin-bottom: 1rem;
   outline: none;
 }
 .comm-input:focus {
   background-color: #f8f9fa;
   /* border: 0.2rem solid #f8f9fa; */
+}
+.btn-comment {
+  background-color: #000;
+  border: none;
+  color: #fff;
+  padding: 1rem 2.2rem;
+  border-radius: 0.3rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
 }

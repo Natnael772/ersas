@@ -11,7 +11,7 @@ const LeaveComment = () => {
           className="comm-input"
           placeholder="Comment..."
         />
-        <a className="btn-comment">Post comment</a>
+        <button className="btn-comment">Post comment</button>
       </form>
       <p className="leavecom-nli">
         Login first to comment.
