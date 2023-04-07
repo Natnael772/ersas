@@ -13,9 +13,9 @@ const LeaveComment = () => {
         />
         <button className="btn-comment">Post comment</button>
       </form>
-      <p className="leavecom-nli">
-        Login first to comment.
-        <a href="link-login">Login</a>
+      <p className="leavecom-logf">
+        Login first to comment. &nbsp;
+        <a className="link-login">Click here</a>
       </p>
     </div>
   );

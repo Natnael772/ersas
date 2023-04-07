@@ -128,3 +128,9 @@
   cursor: pointer;
   margin-bottom: 2rem;
 }
+.leavecom-logf {
+  font-size: 1.4rem;
+}
+.link-login {
+  text-decoration: underline;
+}
