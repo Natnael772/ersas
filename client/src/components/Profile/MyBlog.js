@@ -26,7 +26,7 @@ const MyBlog = () => {
         <h2 className="blog-title">
           <a href="#">How to learn MERN Stack development from Scratch</a>
         </h2>
-        <div className="user-data-container">
+        {/* <div className="user-data-container">
           <img className="user-photo" src={wp1} />
           <div className="user-data-subcontainer">
             <h2 className="user-fullname">Segni Alemayehu</h2>
@@ -34,7 +34,7 @@ const MyBlog = () => {
               Senior Laravel Developer based in Ethiopia
             </h2>
           </div>
-        </div>
+        </div> */}
         <h2 className="date-posted">Posted at 11/13/2019</h2>
       </div>
     </div>

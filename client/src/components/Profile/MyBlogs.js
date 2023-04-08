@@ -1,13 +1,12 @@
-import BlogSingle from "../BlogsByCat/BlogSingle";
-
+import MyBlog from "./MyBlog";
 const MyBlogs = () => {
   return (
     <div className="userblogs-con">
       <h1 className="sec-title" style={{ paddingLeft: "10rem" }}>
         Blogs
       </h1>
-      <BlogSingle />
-      <BlogSingle />
+      <MyBlog />
+      <MyBlog />
     </div>
   );
 };
