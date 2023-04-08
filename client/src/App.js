@@ -15,6 +15,7 @@ import Comments from "./components/Comments/Comments";
 import LeaveComment from "./components/Comments/LeaveComment";
 import UserProfile from "./components/User/UserProfile";
 import MyProfile from "./components/Profile/MyProfile";
+import MyBlogs from "./components/Profile/MyBlogs";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <LeaveComment />
       {/* <UserProfile /> */}
       <MyProfile />
+      <MyBlogs />
       {/* <User />
       <AllCategory /> */}
       {/* <Footer /> */}
