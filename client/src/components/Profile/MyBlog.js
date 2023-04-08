@@ -12,7 +12,7 @@ import {
   wp11,
   wp12,
 } from "../../constants/images";
-
+import "./MyBlogs.css";
 const MyBlog = () => {
   return (
     <div className="blogsbycat-main-container">
@@ -36,6 +36,14 @@ const MyBlog = () => {
           </div>
         </div> */}
         <h2 className="date-posted">Posted at 11/13/2019</h2>
+        <div className="blog-btns-con">
+          <a href="#" className="btn-edit">
+            Edit
+          </a>
+          <a href="#" className="btn-delete">
+            Delete
+          </a>
+        </div>
       </div>
     </div>
   );
