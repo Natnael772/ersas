@@ -13,6 +13,8 @@ import Signup from "./components/Login/Signup";
 import AllCategory from "./components/AllCategory/AllCatagory";
 import Comments from "./components/Comments/Comments";
 import LeaveComment from "./components/Comments/LeaveComment";
+import UserProfile from "./components/User/UserProfile";
+import MyProfile from "./components/Profile/MyProfile";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
       <BlogDetail />
       <Comments />
       <LeaveComment />
+      {/* <UserProfile /> */}
+      <MyProfile />
       {/* <User />
       <AllCategory /> */}
       {/* <Footer /> */}
