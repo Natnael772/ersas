@@ -37,7 +37,6 @@ function App() {
       <AllCategory />
 
       <Footer />
-      <NavT />
     </div>
   );
 }
