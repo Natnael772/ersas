@@ -1,0 +1,127 @@
+.spanned {
+  color: #ffd369;
+}
+.footer {
+  background-color: #222831;
+}
+.footer-main-container {
+  font-size: 1.6rem;
+  /* background-color: #222831;
+   */
+  background-color: #222831;
+  padding: 6rem 12rem 3rem 12rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* gap: 2rem; */
+}
+.footer-intro {
+  width: 20%;
+  color: #fff;
+}
+.footer-logo {
+  font-size: 3.4rem;
+  font-weight: 700;
+}
+.footer-title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.desc {
+  line-height: 1.8;
+  font-weight: 400;
+  padding-top: 2rem;
+  color: #ffffffb3;
+  font-size: 1.5rem;
+}
+.cards-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.desc-container {
+  color: #ffffffb3;
+  width: 20rem;
+}
+.footer-img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+.footer-blog-title {
+  font-size: 1.6rem;
+  padding-bottom: 1rem;
+}
+.footer-blog-date {
+  color: #808080;
+  font-size: 1.1rem;
+}
+.footer-blog-link:hover {
+  color: #ffd369;
+  transition: 0.3s all ease-in-out;
+}
+.info-link {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  color: #fff;
+  padding-bottom: 1rem;
+}
+.info-link:hover {
+  color: #ffd369;
+  transition: 0.3s all ease-in-out;
+}
+/* .footer-arrow {
+  font-weight: 500; 
+  color: #fff;
+  font-size: 1.1rem;
+  display: inline;
+  margin-right: 0.5rem;
+} */
+.contact-info-con {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.copyright {
+  font-size: 16px;
+  color: #ffffffb3;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+.blurry {
+  color: #ffffffb3;
+}
+/* Mobile  */
+@media (max-width: 600px) {
+  html {
+    font-size: 8px;
+  }
+  .footer-intro {
+    width: 100%;
+  }
+
+  .footer-main-container {
+    padding: 6rem 8rem 3rem 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .copyright {
+    font-size: 12px;
+  }
+  .cards-container {
+    /* display: flex; */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    /* margin-bottom: 2rem; */
+  }
+}

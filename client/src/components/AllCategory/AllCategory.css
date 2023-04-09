@@ -1,0 +1,90 @@
+.allcat-container-main {
+  padding: 2rem 14rem;
+}
+.allcat-header {
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 700;
+}
+.allcat-desc {
+  /* display: none; */
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.cat-choice-con-ul {
+  margin: 4rem 0;
+  display: flex;
+  /* align-items:center; */
+  justify-content: center;
+  gap: 4rem;
+}
+.cat-choice-con-ul .active {
+  color: #ff3368;
+}
+.cat-choice-con-ul li a {
+  font-size: 1.8rem;
+}
+
+.cat-blogs-con {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.cat-blog {
+  width: 30%;
+}
+.cat-blog-img {
+  height: 25rem;
+  /* height: 40rem; */
+  border-radius: 0.7rem;
+  width: 100%;
+  /* object-fit: cover;
+  overflow: hidden; */
+}
+/* .cat-blog-img:hover {
+  transform: scale(1.5);
+} */
+.cat-blog-date {
+  color: #999999;
+  font-weight: 400;
+}
+.cat-name {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #222222;
+}
+.cat-blog-title {
+  font-weight: 700;
+  color: #222222;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin-top: 0.1rem;
+  margin-bottom: 1rem;
+  /* letter-spacing: -0.05rem; */
+}
+.cat-blog-desc {
+  color: #888888;
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+.cat-user-con {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cat-user-img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+
+.cat-userinfo-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.3;
+}

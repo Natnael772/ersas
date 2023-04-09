@@ -1,0 +1,44 @@
+/* .main-container{
+    padding : 
+} */
+.user-img-large {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-container {
+  display: flex;
+  align-items: center;
+
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.user-title-b {
+  font-size: 6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.follow-con {
+  display: flex;
+  gap: 0.7rem;
+}
+.follow-num {
+  font-size: 1.4rem;
+}
+.user-bio-b {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.btn-follow {
+  display: inline-block;
+  /* width: auto; */
+  margin-top: 2rem;
+  background-color: #191919;
+  padding: 1rem 3rem;
+  color: #fff;
+  font-size: 1.4rem;
+  /* border-radius: 0.4rem; */
+  border-radius: 2rem;
+}
