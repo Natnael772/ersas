@@ -24,20 +24,20 @@ function App() {
       {/* <Login />
       <Signup /> */}
 
-      {/* <Landing />
+      <Landing />
       <BlogsByCat />
-      <Pagination /> */}
+      <Pagination />
       <BlogDetail />
       <Comments />
       <LeaveComment />
-      {/* <UserProfile /> */}
+      <UserProfile />
       <MyProfile />
       <MyBlogs />
-      {/* <User />
-      <AllCategory /> */}
-      {/* <Footer /> */}
+      <User />
+      <AllCategory />
 
-      {/* <NavT /> */}
+      <Footer />
+      <NavT />
     </div>
   );
 }

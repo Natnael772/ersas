@@ -37,7 +37,7 @@ const UserProfile = () => {
               </a>
             </div>
             <a href="#" className="btn-follow">
-              Edit profile
+              Follow
             </a>
           </div>
         </div>
