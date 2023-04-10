@@ -9,8 +9,8 @@ exports.postLogin = async (req, res, next) => {
   // const user = await User.find({ email: email });
   const user = {
     id: 1,
-    email: "gmail",
-    password: 123,
+    email: email,
+    password: password,
   };
   if (!user) {
     return res.json({ msg: "Email or password incorrect" });
@@ -26,8 +26,6 @@ exports.postLogin = async (req, res, next) => {
     });
   }
 };
-
-
 
 exports.postSignup = (req, res, next) => {
   const { fname, lname, username, bio, links, confirmPwd, email, password } =

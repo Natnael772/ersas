@@ -16,6 +16,8 @@ router.delete("/dummyusers/:userId", isAuth, (req, res, next) => {
     res.status(200).json({
       msg: "user has been deleted",
     });
+  } else {
+    res.status(403).json({ msg: "You arenot allowed to delete this user" });
   }
 });
 module.exports = router;
