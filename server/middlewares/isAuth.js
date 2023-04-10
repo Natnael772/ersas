@@ -1,10 +1,12 @@
+const jwt = require("jsonwebtoken");
+//Checking if the user has a valid token
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-    jwt.verify(token, "myecretkey", (err, user) => {
+    jwt.verify(token, "mysecretkey", (err, user) => {
       if (err)
-        res.status(401).json({
+        return res.status(401).json({
           msg: "Token isnot valid",
         });
 
