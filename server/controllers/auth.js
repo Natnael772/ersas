@@ -6,14 +6,39 @@ const bcrypt = require("bcryptjs");
 
 exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
-  const user = await User.find({ email: email });
+  // const user = await User.find({ email: email });
+  const user = {
+    id: 1,
+    email: "gmail",
+    password: 123,
+  };
   if (!user) {
-    return res.json({ msg: "Username or password incorrect" });
+    return res.json({ msg: "Email or password incorrect" });
   }
-  const isAuth = await bcrypt.compare(password, user.password);
+  // const isAuth = await bcrypt.compare(password, user.password);
+  const isAuth = true;
   if (isAuth) {
+    //Generate access token
+    const accessToken = jwt.sign({ id: user.id }, "mysecretkey");
     res.json({
-      msg: "You have successfully logged in",
+      email: user.email,
+      accessToken,
+    });
+  }
+};
+
+const verify = () => {
+  const authHeader = req.headers.authorization;
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, "myecretkey", (err, user) => {
+      if (err)
+        res.status(401).json({
+          msg: "Token isnot valid",
+        });
+
+      req.user = user;
+      next();
     });
   }
 };
