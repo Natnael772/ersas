@@ -19,7 +19,9 @@ exports.postLogin = async (req, res, next) => {
   const isAuth = true;
   if (isAuth) {
     //Generate access token
-    const accessToken = jwt.sign({ id: user.id }, "mysecretkey");
+    const accessToken = jwt.sign({ id: user.id }, "mysecretkey", {
+      expiresIn: "20s",
+    });
     res.json({
       email: user.email,
       accessToken,

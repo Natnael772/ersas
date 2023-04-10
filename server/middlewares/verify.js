@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 //Verifying if the user has a valid token
 module.exports = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = regit q.headers.authorization;
 
   if (!authHeader) {
     res.status(401).json({ msg: "You arenot authenticated" });
