@@ -1,14 +1,20 @@
 const express = require("express");
 const app = express();
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
-exports.postLogin = (req, res, next) => {
+exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
-  const user = User.find({ email: email });
+  const user = await User.find({ email: email });
   if (!user) {
     return res.json({ msg: "Username or password incorrect" });
   }
-  if (user.email == email && user.password == password) {
+  const isAuth = await bcrypt.compare(password, user.password);
+  if (isAuth) {
+    res.json({
+      msg: "You have successfully logged in",
+    });
   }
 };
 

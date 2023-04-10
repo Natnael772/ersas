@@ -16,6 +16,7 @@ import LeaveComment from "./components/Comments/LeaveComment";
 import UserProfile from "./components/User/UserProfile";
 import MyProfile from "./components/Profile/MyProfile";
 import MyBlogs from "./components/Profile/MyBlogs";
+import { Router, Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
   return (
