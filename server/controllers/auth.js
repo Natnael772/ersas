@@ -22,6 +22,10 @@ exports.postLogin = async (req, res, next) => {
     const accessToken = jwt.sign({ id: user.id }, "mysecretkey", {
       expiresIn: "20s",
     });
+    //generate refresh token
+    const refreshToken = jwt.sign({ id: user.id }, "myrefreshsecretkey", {
+      expiresIn: "20s",
+    });
     res.json({
       email: user.email,
       accessToken,

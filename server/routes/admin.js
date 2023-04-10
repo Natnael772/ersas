@@ -20,4 +20,14 @@ router.delete("/dummyusers/:userId", verify, (req, res, next) => {
     res.status(403).json({ msg: "You arenot allowed to delete this user" });
   }
 });
+
+let refreshTokens = [];
+app.post("/api/refresh", (req, res) => {
+  //take the refresh token from the user
+  const refreshToken = req.body.token;
+  //send error if no token or invalid
+  if (!refreshToken)
+    return res.status(401).json({ msg: "You arenot authorized" });
+  //create new access token, refresh token
+});
 module.exports = router;
