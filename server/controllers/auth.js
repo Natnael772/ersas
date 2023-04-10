@@ -4,6 +4,17 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+const generateAccessToken = (user) => {
+  return jwt.sign({ id: user.id }, "mysecretkey", {
+    expiresIn: "20s",
+  });
+};
+const generateRefreshToken = (user) => {
+  return jwt.sign({ id: user.id }, "myrefreshsecretkey", {
+    expiresIn: "20s",
+  });
+};
+
 exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
   // const user = await User.find({ email: email });
@@ -19,16 +30,14 @@ exports.postLogin = async (req, res, next) => {
   const isAuth = true;
   if (isAuth) {
     //Generate access token
-    const accessToken = jwt.sign({ id: user.id }, "mysecretkey", {
-      expiresIn: "20s",
-    });
+    const accessToken = generateAccessToken(user);
     //generate refresh token
-    const refreshToken = jwt.sign({ id: user.id }, "myrefreshsecretkey", {
-      expiresIn: "20s",
-    });
+    const refreshToken = generateRefreshToken(user);
+
     res.json({
       email: user.email,
       accessToken,
+      refreshToken,
     });
   }
 };
