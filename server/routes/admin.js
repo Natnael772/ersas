@@ -12,7 +12,7 @@ router.put("/users/:userId", adminController.updateUser);
 router.delete("/users/:userId", adminController.deleteUser);
 
 router.delete("/dummyusers/:userId", isAuth, (req, res, next) => {
-  if (req.user.id == req.params.userId) {
+  if (req.user.id == req.params.userId || req.user.role == "admin") {
     res.status(200).json({
       msg: "user has been deleted",
     });
