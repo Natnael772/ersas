@@ -11,22 +11,38 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  username: {
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
     type: String,
     required: true,
   },
   bio: String,
-  // links: String,
+
   links: {
     twitter: String,
     facebook: String,
     linkedin: String,
   },
-  photo: String,
-  email: String,
-  password: String,
-  followers: { type: Schema.Types.ObjectId },
-  blog: { type: Schema.Types.ObjectId, ref: "Blog" },
+  // photo: String,
+
+  followers: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  following: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
+  blogs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Blog",
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);
