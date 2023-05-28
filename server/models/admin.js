@@ -11,10 +11,15 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
-  username: {
+  email: {
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
+
   bio: String,
   // links: String,
   links: {
@@ -22,8 +27,6 @@ const adminSchema = new Schema({
     facebook: String,
     linkedin: String,
   },
-  photo: String,
-  email: String,
-  password: String,
+  // photo: String,
 });
 module.exports = mongoose.model("Admin", adminSchema);

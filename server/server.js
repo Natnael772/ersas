@@ -50,7 +50,7 @@ app.listen(PORT, () => {
   console.log("Server running");
   mongoose
     .connect(
-      "mongodb+srv://natnael:root@cluster0.gy0a5.mongodb.net/ersasdb?retryWrites=true&w=majority"
+      `mongodb+srv://natnael:root@cluster0.gy0a5.mongodb.net/ersasdb?retryWrites=true&w=majority`
     )
     .then((res) => {
       console.log("Connected");
