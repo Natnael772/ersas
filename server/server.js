@@ -11,6 +11,8 @@ const Blog = require("./models/blog");
 
 require("dotenv").config();
 
+console.log(process.env.PORT);
+
 const DB = process.env.DB;
 const USER = process.env.DBUSER;
 const PASSWORD = process.env.DBPASSWORD;
