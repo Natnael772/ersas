@@ -14,8 +14,8 @@ require("dotenv").config();
 console.log(process.env.PORT);
 
 const DB = process.env.DB;
-const USER = process.env.DBUSER;
-const PASSWORD = process.env.DBPASSWORD;
+const USER = process.env.DB_USER;
+const PASSWORD = process.env.DB_PASSWORD;
 const PORT = process.env.PORT || 8080;
 
 app.use(bodyparser.urlencoded());
