@@ -16,6 +16,8 @@ app.use("/api/v1", userRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
+const USER = process.env.USER;
+const PASSWORD = process.env.PASSWORD;
 const PORT = process.env.PORT || 8080;
 
 const run = async () => {
