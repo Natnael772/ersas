@@ -53,9 +53,10 @@ const run = async () => {
 
 app.listen(PORT, () => {
   console.log("Server running");
+  console.log(DB, PASSWORD, USER);
   mongoose
     .connect(
-      `mongodb+srv://natnael:root@cluster0.gy0a5.mongodb.net/ersasdb?retryWrites=true&w=majority`
+      `mongodb+srv://${USER}:${PASSWORD}@cluster0.gy0a5.mongodb.net/${DB}?retryWrites=true&w=majority`
     )
     .then((res) => {
       console.log("Connected");
