@@ -9,16 +9,19 @@ const adminRoutes = require("./routes/admin");
 const User = require("./models/user");
 const Blog = require("./models/blog");
 
+require("dotenv").config();
+
+const DB = process.env.DB;
+const USER = process.env.DBUSER;
+const PASSWORD = process.env.DBPASSWORD;
+const PORT = process.env.PORT || 8080;
+
 app.use(bodyparser.urlencoded());
 app.use(express.json());
 
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/admin", adminRoutes);
-
-const USER = process.env.USER;
-const PASSWORD = process.env.PASSWORD;
-const PORT = process.env.PORT || 8080;
 
 const run = async () => {
   try {
