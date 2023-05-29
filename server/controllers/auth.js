@@ -17,49 +17,55 @@ const generateRefreshToken = (user) => {
 
 exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
-  const user = await User.find({ email: email });
+  console.log(email, password);
+  const user = await User.findOne({ email: email });
+  console.log(user);
 
   if (!user) {
     return res.json({ status: "fail", msg: "Email or password incorrect" });
   }
 
-  const isAuth = await bcrypt.compare(password, user.password);
-  if (isAuth) {
-    //Generate access token
-    const accessToken = generateAccessToken(user);
-    //generate refresh token
-    const refreshToken = generateRefreshToken(user);
+  res.json({ status: "success", user: user });
+  // const isAuth = await bcrypt.compare(password, user.password);
+  // if (!isAuth) {
+  //   return res.json({ status: "fail", msg: "Invalid credentials" });
+  // }
 
-    res.json({
-      email: user.email,
-      accessToken,
-      refreshToken,
-    });
-  }
+  //Generate access token
+  // const accessToken = generateAccessToken(user);
+  // //generate refresh token
+  // const refreshToken = generateRefreshToken(user);
+
+  // res.json({
+  //   email: user.email,
+  //   accessToken,
+  //   refreshToken,
+  // });
 };
 
-exports.postSignup = (req, res, next) => {
-  const { fname, lname, email, password, bio, confirmPassword } = req.body;
+exports.postSignup = async (req, res, next) => {
+  const { fname, lname, email, bio, password, confirmPassword } = req.body;
+
+  console.log(req.body);
+  if (password != confirmPassword) {
+    return res.json({
+      status: "fail",
+      msg: "Error! Passwords don't match",
+    });
+  }
+
+  const hashedPwd = await bcrypt.hash(password, 12);
 
   const user = new User({
     fname: fname,
     lname: lname,
-
     bio: bio,
-
     email: email,
-    password: password,
+    password: hashedPwd,
   });
-  user
-    .save()
-    .then((result) => {
-      console.log("Created");
-      res.json({
-        status: "success",
-        req: req.body,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await user.save();
+  res.json({
+    status: "success",
+    req: req.body,
+  });
 };

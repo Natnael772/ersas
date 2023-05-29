@@ -26,9 +26,15 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  const { fname, lname, email } = req.body;
+  const { fname, lname, bio, email } = req.body;
   const userId = req.params.userId;
   const user = await User.findById(userId);
+  if (!user) {
+    return res.json({
+      status: "fail",
+      msg: "No user with that id",
+    });
+  }
   user.fname = fname;
   user.lname = lname;
   user.email = email;

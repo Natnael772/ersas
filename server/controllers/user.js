@@ -13,14 +13,14 @@ exports.getBlog = (req, res, next) => {};
 exports.createBlog = async (req, res, next) => {
   const {
     category,
-    subcategory,
+
     title,
     description,
     body,
-    posted,
-    updated,
-    claps,
-    comments,
+    // posted,
+    // updated,
+    // claps,
+    // comments,
   } = req.body;
 
   const blog = new Blog({
