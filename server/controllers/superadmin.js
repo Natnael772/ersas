@@ -74,6 +74,19 @@ exports.updateAdmin = async (req, res, next) => {
   });
 };
 
+exports.deleteAdmin = async (req, res, next) => {
+  const { email } = req.body;
+  await Admin.deleteOne({ email: email }, () => {
+    if (err) {
+      return res.json({ status: "fail", msg: "Error removing user" });
+    }
+    res.json({
+      status: "success",
+      msg: "Deleted",
+    });
+  });
+};
+
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
   res.json({
