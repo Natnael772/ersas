@@ -98,6 +98,7 @@ exports.updateAdmin = async (req, res, next) => {
   });
 };
 
+//Get users/blogggers
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
   res.json({
@@ -105,6 +106,8 @@ exports.getUsers = async (req, res, next) => {
     users: users,
   });
 };
+
+//Get specific user/bloggger by id
 exports.getUser = async (req, res, next) => {
   const userId = req.params.userId;
   const user = await User.findById(userId);
@@ -122,6 +125,7 @@ exports.getUser = async (req, res, next) => {
   });
 };
 
+//Update user by id
 exports.updateUser = async (req, res, next) => {
   const { fname, lname, email } = req.body;
   const userId = req.params.userId;
@@ -133,6 +137,7 @@ exports.updateUser = async (req, res, next) => {
   res.json({ status: "success", user: user });
 };
 
+//Delete user by id
 exports.deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
   const user = await User.findByIdAndRemove(userId);
