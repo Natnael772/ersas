@@ -13,6 +13,12 @@ exports.getUser = async (req, res, next) => {
   const user = await User.findById(userId);
 
   //   const user = await User.find({ _id: userId });
+  if (!user) {
+    return res.json({
+      status: "fail",
+      msg: "No user with that id",
+    });
+  }
   res.json({
     status: "success",
     user: user,
@@ -20,14 +26,11 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  const { fname, lname, username, bio, links, email } = req.body;
+  const { fname, lname, email } = req.body;
   const userId = req.params.userId;
   const user = await User.findById(userId);
   user.fname = fname;
   user.lname = lname;
-  user.username = username;
-  user.bio = bio;
-  user.links = links;
   user.email = email;
   await user.save();
   res.json({ status: "success", user: user });

@@ -17,17 +17,13 @@ const generateRefreshToken = (user) => {
 
 exports.postLogin = async (req, res, next) => {
   const { email, password } = req.body;
-  // const user = await User.find({ email: email });
-  const user = {
-    id: 1,
-    email: email,
-    password: password,
-  };
+  const user = await User.find({ email: email });
+
   if (!user) {
-    return res.json({ msg: "Email or password incorrect" });
+    return res.json({ status: "fail", msg: "Email or password incorrect" });
   }
-  // const isAuth = await bcrypt.compare(password, user.password);
-  const isAuth = true;
+
+  const isAuth = await bcrypt.compare(password, user.password);
   if (isAuth) {
     //Generate access token
     const accessToken = generateAccessToken(user);
@@ -43,15 +39,14 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.postSignup = (req, res, next) => {
-  const { fname, lname, username, bio, links, confirmPwd, email, password } =
-    req.body;
+  const { fname, lname, email, password, bio, confirmPassword } = req.body;
 
   const user = new User({
     fname: fname,
     lname: lname,
-    username: username,
+
     bio: bio,
-    links: links,
+
     email: email,
     password: password,
   });

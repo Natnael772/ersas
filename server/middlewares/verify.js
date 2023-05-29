@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+
 //Verifying if the user has a valid token
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
