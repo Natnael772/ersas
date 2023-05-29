@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 
 const blogSchema = new Schema(
   {
-    category: String,
+    category: {
+      type: mongoose.Schema.ObjectId,
+      ref: " Category",
+    },
     title: String,
     content: String,
     author: {

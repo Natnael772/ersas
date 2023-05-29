@@ -2,7 +2,7 @@ const app = require("express")();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const superAdminSchema = new Schema({
+const superadminSchema = new Schema({
   fname: {
     type: String,
     required: true,
@@ -22,11 +22,15 @@ const superAdminSchema = new Schema({
 
   bio: String,
   // links: String,
-  links: {
-    twitter: String,
-    facebook: String,
-    linkedin: String,
-  },
+  // links: {
+  //   twitter: String,
+  //   facebook: String,
+  //   linkedin: String,
+  // },
   // photo: String,
+  // role: {
+  //   type: String,
+  //   enum: ["admin", "superadmin"],
+  // },
 });
-module.exports = mongoose.model("Superadmin", superAdminSchema);
+module.exports = mongoose.model("Superadmin", superadminSchema);

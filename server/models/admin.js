@@ -22,11 +22,15 @@ const adminSchema = new Schema({
 
   bio: String,
   // links: String,
-  links: {
-    twitter: String,
-    facebook: String,
-    linkedin: String,
-  },
+  // links: {
+  //   twitter: String,
+  //   facebook: String,
+  //   linkedin: String,
+  // },
   // photo: String,
+  // role: {
+  //   type: String,
+  //   enum: ["admin", "superadmin"],
+  // },
 });
 module.exports = mongoose.model("Admin", adminSchema);
