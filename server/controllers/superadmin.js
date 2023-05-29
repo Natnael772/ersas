@@ -50,9 +50,22 @@ exports.addAdmin = async (req, res, next) => {
   });
 };
 
+const getUpdateAdmin = async (req, res, next) => {
+  const id = req.params.id;
+  const admin = await Admin.find({ _id: id });
+  if (!admin) {
+    return res.json({ status: "fail", msg: "no admin with this id" });
+  }
+  res.json({
+    status: "success",
+    admin: admin,
+  });
+};
+
 exports.updateAdmin = async (req, res, next) => {
+  const id = req.params.id;
   const { fname, lname, email, password } = req.body;
-  const admin = Admin.find({ email: email });
+  const admin = await Admin.find({ _id: id });
 
   if (!admin) {
     return res.json({ status: "fail", msg: "no admin with this email" });
@@ -71,19 +84,6 @@ exports.updateAdmin = async (req, res, next) => {
   res.json({
     status: "success",
     msg: "Updated successfully",
-  });
-};
-
-exports.deleteAdmin = async (req, res, next) => {
-  const { email } = req.body;
-  await Admin.deleteOne({ email: email }, () => {
-    if (err) {
-      return res.json({ status: "fail", msg: "Error removing user" });
-    }
-    res.json({
-      status: "success",
-      msg: "Deleted",
-    });
   });
 };
 
