@@ -59,6 +59,20 @@ const getAdmins = async (req, res, next) => {
   res.json({ status: "success", admins: admins });
 };
 
+//Search admin by id
+const getAdmin = async (req, res, next) => {
+  const id = req.params.id;
+  const admin = await Admin.find({ _id: id });
+  if (!admin) {
+    return res.json({ status: "fail", msg: "no admin with this id" });
+  }
+  res.json({
+    status: "success",
+    admin: admin,
+  });
+};
+
+//Update admin
 exports.updateAdmin = async (req, res, next) => {
   const id = req.params.id;
   const { fname, lname, email, password } = req.body;
