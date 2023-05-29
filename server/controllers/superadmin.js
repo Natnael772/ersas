@@ -50,6 +50,30 @@ exports.addAdmin = async (req, res, next) => {
   });
 };
 
+exports.updateAdmin = async (req, res, next) => {
+  const { fname, lname, email, password } = req.body;
+  const admin = Admin.find({ email: email });
+
+  if (!admin) {
+    return res.json({ status: "fail", msg: "no admin with this email" });
+  }
+
+  //Hasing the password
+  const hashedPwd = await bcrypt.hash(password, 23);
+
+  //Update data
+  admin.fname = fname;
+  admin.lname = lname;
+  admin.email = email;
+  admin.password = hashedPwd;
+
+  await admin.save();
+  res.json({
+    status: "success",
+    msg: "Updated successfully",
+  });
+};
+
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
   res.json({
