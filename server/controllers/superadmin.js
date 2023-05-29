@@ -50,16 +50,13 @@ exports.addAdmin = async (req, res, next) => {
   });
 };
 
-const getUpdateAdmin = async (req, res, next) => {
-  const id = req.params.id;
-  const admin = await Admin.find({ _id: id });
-  if (!admin) {
-    return res.json({ status: "fail", msg: "no admin with this id" });
+//Get admins
+const getAdmins = async (req, res, next) => {
+  const admins = await Admin.find();
+  if (!admins) {
+    return res.json({ status: "fail", msg: "No admin found" });
   }
-  res.json({
-    status: "success",
-    admin: admin,
-  });
+  res.json({ status: "success", admins: admins });
 };
 
 exports.updateAdmin = async (req, res, next) => {
