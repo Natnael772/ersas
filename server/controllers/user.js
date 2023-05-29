@@ -8,7 +8,20 @@ exports.getBlogs = async (req, res, next) => {
   res.json({ message: "success", blogs: blogs });
 };
 
-exports.getBlog = (req, res, next) => {};
+exports.getBlog = async (req, res, next) => {
+  const blogId = req.params.blogId;
+  const blog = await Blog.findById(blogId);
+  if (!blog) {
+    return res.json({
+      status: "fail",
+      msg: "No blog with this id",
+    });
+  }
+  res.json({
+    status: "success",
+    blog: blog,
+  });
+};
 
 exports.createBlog = async (req, res, next) => {
   const {
@@ -25,14 +38,14 @@ exports.createBlog = async (req, res, next) => {
 
   const blog = new Blog({
     category: category,
-    subcategory: subcategory,
+
     title: title,
     description: description,
     body: body,
     // posted: posted,
     // updated: updated,
-    claps: claps,
-    comments: comments,
+    // claps: claps,
+    // comments: comments,
   });
   await blog.save();
   res.json({

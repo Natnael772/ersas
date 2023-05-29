@@ -63,6 +63,7 @@ exports.postSignup = async (req, res, next) => {
     email: email,
     password: hashedPwd,
   });
+
   await user.save();
   res.json({
     status: "success",
