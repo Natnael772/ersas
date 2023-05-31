@@ -4,19 +4,59 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-const generateAccessToken = (user) => {
-  return jwt.sign({ id: user.id }, "mysecretkey", {
-    expiresIn: "20s",
-  });
-};
-const generateRefreshToken = (user) => {
-  return jwt.sign({ id: user.id }, "myrefreshsecretkey", {
-    expiresIn: "20s",
+const signToken = (id) => {
+  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
+// const generateAccessToken = (user) => {
+//   return jwt.sign({ id: user.id }, "mysecretkey", {
+//     expiresIn: "20s",
+//   });
+// };
+// const generateRefreshToken = (user) => {
+//   return jwt.sign({ id: user.id }, "myrefreshsecretkey", {
+//     expiresIn: "20s",
+//   });
+// };
+
 exports.postLogin = async (req, res, next) => {
-  // const { email, password } = req.body;
+  const { email, password } = req.body;
+
+  //check if email and password exists
+  if (!email || !password) {
+    return res.status(400).json({
+      status: "fail",
+      msg: "Please provide email and passwod",
+    });
+  }
+
+  //check if user exists and password is correct
+  const user = await User.findOne({ email: email });
+  console.log(user);
+  // if (!user) {
+  //   return res.status(401).json({
+  //     status: "fail",
+  //     msg: "Incorrect email or password",
+  //   });
+  // }
+
+  // const isAuth = await bcrypt.compare(password, user.password);
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).json({
+      status: "fail",
+      msg: "Incorrect email or password",
+    });
+  }
+
+  //if everything ok, send token to client
+  const token = signToken(user._id);
+  res.status(200).json({
+    status: "success",
+    token,
+  });
+
   // console.log(email, password);
   // const user = await User.findOne({ email: email });
   // console.log(user);
@@ -60,12 +100,7 @@ exports.postSignup = async (req, res, next) => {
     password: hashedPwd,
   });
 
-  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
-
-  console.log(token);
-
+  const token = signToken(user._id);
   res.status(201).json({
     status: "success",
     token,
