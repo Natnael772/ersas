@@ -65,7 +65,7 @@ exports.postSignup = async (req, res, next) => {
   });
 
   console.log(token);
-  // await user.save();
+
   res.status(201).json({
     status: "success",
     token,
