@@ -10,7 +10,9 @@ exports.getBlogs = async (req, res, next) => {
 
 exports.getBlog = async (req, res, next) => {
   const blogId = req.params.blogId;
-  const blog = await Blog.findById(blogId);
+  const blog = await Blog.findOne({ _id: blogId });
+  console.log(blog);
+
   if (!blog) {
     return res.json({
       status: "fail",
@@ -26,10 +28,8 @@ exports.getBlog = async (req, res, next) => {
 exports.createBlog = async (req, res, next) => {
   const {
     category,
-
     title,
-    description,
-    body,
+    content,
     // posted,
     // updated,
     // claps,
@@ -40,17 +40,22 @@ exports.createBlog = async (req, res, next) => {
     category: category,
 
     title: title,
-    description: description,
-    body: body,
+    content: content,
+
     // posted: posted,
     // updated: updated,
-    // claps: claps,
-    // comments: comments,
+    // claps: 0,
+    // comments: 0,
   });
-  await blog.save();
-  res.json({
-    status: "success",
-    blog: blog,
+  await blog.save(function (err) {
+    if (err) {
+      return res.json({ status: "fail", msg: "unable to save" });
+    }
+
+    res.json({
+      status: "success",
+      blog: blog,
+    });
   });
 };
 

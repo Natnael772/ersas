@@ -22,8 +22,8 @@ function App() {
   return (
     <div>
       <Nav />
-      {/* <Login />
-      <Signup /> */}
+      <Login />
+      <Signup />
 
       <Landing />
       <BlogsByCat />

@@ -16,26 +16,22 @@ const generateRefreshToken = (user) => {
 };
 
 exports.postLogin = async (req, res, next) => {
-  const { email, password } = req.body;
-  console.log(email, password);
-  const user = await User.findOne({ email: email });
-  console.log(user);
-
-  if (!user) {
-    return res.json({ status: "fail", msg: "Email or password incorrect" });
-  }
-
-  res.json({ status: "success", user: user });
+  // const { email, password } = req.body;
+  // console.log(email, password);
+  // const user = await User.findOne({ email: email });
+  // console.log(user);
+  // if (!user) {
+  //   return res.json({ status: "fail", msg: "Email or password incorrect" });
+  // }
+  // res.json({ status: "success", user: user });
   // const isAuth = await bcrypt.compare(password, user.password);
   // if (!isAuth) {
   //   return res.json({ status: "fail", msg: "Invalid credentials" });
   // }
-
   //Generate access token
   // const accessToken = generateAccessToken(user);
   // //generate refresh token
   // const refreshToken = generateRefreshToken(user);
-
   // res.json({
   //   email: user.email,
   //   accessToken,
@@ -56,7 +52,7 @@ exports.postSignup = async (req, res, next) => {
 
   const hashedPwd = await bcrypt.hash(password, 12);
 
-  const user = new User({
+  const user = await User.create({
     fname: fname,
     lname: lname,
     bio: bio,
@@ -64,9 +60,17 @@ exports.postSignup = async (req, res, next) => {
     password: hashedPwd,
   });
 
-  await user.save();
-  res.json({
+  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+
+  console.log(token);
+  // await user.save();
+  res.status(201).json({
     status: "success",
-    req: req.body,
+    token,
+    data: {
+      user: user,
+    },
   });
 };

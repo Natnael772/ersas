@@ -27,43 +27,55 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  // const { fname, lname, bio, email, password } = req.body;
+  const { fname, lname, bio, email, password } = req.body;
   const userId = req.params.userId;
-  // const user = await User.find({ _id: userId });
+  const user = await User.findById(userId);
   console.log(user);
-  // if (!user) {
-  //   return res.json({
-  //     status: "fail",
-  //     msg: "No user with that id",
-  //   });
-  // }
+  // res.json({ user: user });
 
-  // const hashedPwd = bcrypt.hash(password, 12);
+  if (!user) {
+    return res.json({
+      status: "fail",
+      msg: "No user with that id",
+    });
+  }
 
-  // user.fname = fname;
-  // user.lname = lname;
-  // user.email = email;
-  // user.bio = bio;
-  // user.password = hashedPwd;
-  // await user.save();
-  // res.json({ status: "success", user: user });
+  const hashedPwd = await bcrypt.hash(password, 12);
+  user.fname = fname;
+  user.lname = lname;
+  user.email = email;
+  user.bio = bio;
+  user.password = hashedPwd;
+  await user
+    .save()
+    .then(() => {
+      res.json({ status: "success", user: user });
+    })
+    .catch((err) => {
+      res.json({ status: "fail", msg: err });
+    });
 };
 
 exports.deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
+  console.log(userId);
   const user = await User.findById(userId);
-  console.log(user);
+  // console.log(user);
 
-  if (!user) {
-    return res.json({ msg: "no user" });
-  }
+  // if (!user) {
+  //   return res.json({
+  //     status: "fail",
+  //     msg: "no user with this id",
+  //   });
+  // }
+  res.json({ status: "n" });
   // await User.deleteOne({ _id: userId }, function (err) {
   //   if (err) {
   //     return res.json({ status: "fail", msg: "unable to delete" });
   //   }
   //   res.json({
   //     status: "success",
-  //     msg: "Deleted ",
+  //     msg: "user deleted ",
   //   });
   // });
 };
