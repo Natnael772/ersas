@@ -5,7 +5,7 @@ router.get("/blogs", userController.getBlogs);
 
 router.get("/blogs/:blogId", userController.getBlog);
 
-// router.put("/blogs/:blogId", userController.editPost);
+router.put("/blogs/:blogId", userController.editBlog);
 
 router.post("/blog", userController.createBlog);
 

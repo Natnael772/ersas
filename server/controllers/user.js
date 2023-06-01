@@ -66,4 +66,51 @@ exports.createBlog = async (req, res, next) => {
   });
 };
 
+exports.editBlog = async (req, res, next) => {
+  const { categoryId, title, content, userId } = req.body;
+  const blogId = req.params.blogId;
+
+  //Find blog on the database
+  const blog = await Blog.findOne({ _id: blogId });
+  if (!blog) {
+    return res
+      .status(404)
+      .json({ status: "fail", msg: "No blog with this id" });
+  }
+
+  //Find category on the database
+  const category = await Category.findOne({ _id: categoryId });
+  if (!category) {
+    return res.status(404).json({ status: "fail", msg: "No such category" });
+  }
+
+  //Find the user sending the request
+  const user = await User.findOne({ _id: userId });
+  if (!user) {
+    return res
+      .status(404)
+      .json({ status: "fail", msg: "No user with this id" });
+  }
+
+  //Edit blog
+  blog.category = categoryId;
+  blog.title = title;
+  blog.content = content;
+  blog.author = userId;
+
+  //Save blog
+  await blog.save(function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
+    }
+
+    //Send the response
+    res.status(201).json({
+      status: "success",
+      blog: blog,
+    });
+  });
+};
 exports.deletePost = (req, res, next) => {};
