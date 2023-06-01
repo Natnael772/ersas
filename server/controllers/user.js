@@ -49,10 +49,12 @@ exports.createBlog = async (req, res, next) => {
   });
   await blog.save(function (err) {
     if (err) {
-      return res.json({ status: "fail", msg: "unable to save" });
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
     }
 
-    res.json({
+    res.status(201).json({
       status: "success",
       blog: blog,
     });

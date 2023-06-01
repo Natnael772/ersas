@@ -3,8 +3,9 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 exports.getUsers = async (req, res, next) => {
+  console.log(req.headers);
   const users = await User.find();
-  res.json({
+  res.status(200).json({
     status: "success",
     users: users,
   });
@@ -14,13 +15,14 @@ exports.getUser = async (req, res, next) => {
   const user = await User.findById(userId);
 
   //   const user = await User.find({ _id: userId });
+  console.log(user);
   if (!user) {
-    return res.json({
+    return res.status(404).json({
       status: "fail",
       msg: "No user with that id",
     });
   }
-  res.json({
+  res.status(200).json({
     status: "success",
     user: user,
   });
@@ -34,7 +36,7 @@ exports.updateUser = async (req, res, next) => {
   // res.json({ user: user });
 
   if (!user) {
-    return res.json({
+    return res.status(404).json({
       status: "fail",
       msg: "No user with that id",
     });
@@ -49,33 +51,41 @@ exports.updateUser = async (req, res, next) => {
   await user
     .save()
     .then(() => {
-      res.json({ status: "success", user: user });
+      res.status(201).json({ status: "success", user: user });
     })
     .catch((err) => {
-      res.json({ status: "fail", msg: err });
+      res.status(401).json({ status: "fail", msg: err });
     });
 };
 
 exports.deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
   console.log(userId);
-  const user = await User.findById(userId);
-  // console.log(user);
+  // const user = await User.findOne({ id: userId });
+  // // console.log(user);
 
   // if (!user) {
-  //   return res.json({
+  //   return res.status(404).json({
   //     status: "fail",
   //     msg: "no user with this id",
   //   });
-  // }
-  res.json({ status: "n" });
-  // await User.deleteOne({ _id: userId }, function (err) {
-  //   if (err) {
-  //     return res.json({ status: "fail", msg: "unable to delete" });
-  //   }
-  //   res.json({
-  //     status: "success",
-  //     msg: "user deleted ",
-  //   });
-  // });
+
+  // res.status(201).json({ status: "success" });
+  const user = await User.findOne({ _id: userId });
+  if (!user) {
+    return res.status(404).json({
+      status: "fail",
+      msg: "No user with this id",
+    });
+  }
+
+  User.deleteOne({ _id: userId })
+    .then((msg) => {
+      return res.status(201).json({ status: "success", msg: "Deleted user" });
+    })
+    .catch((err) => {
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
+    });
 };

@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const User = require("./models/user");
 const Blog = require("./models/blog");
+const Category = require("./models/category");
 
 require("dotenv").config();
 
@@ -53,6 +54,19 @@ const run = async () => {
   }
 };
 
+// "business",
+// "art",
+// "health",
+// "politics",
+// "entertainment",
+// "education",
+// "relationship",
+// "personal",
+// "religious",
+// "other",
+
+c;
+
 app.listen(PORT, () => {
   console.log("Server running");
   console.log(DB, PASSWORD, USER);
@@ -62,6 +76,7 @@ app.listen(PORT, () => {
     )
     .then((res) => {
       console.log("Connected");
+
       // run();
       // console.log(res);
     })
