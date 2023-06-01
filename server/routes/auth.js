@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const verify = require("../middlewares/verify");
 const authController = require("../controllers/auth");
 
 router.post("/login", authController.postLogin);

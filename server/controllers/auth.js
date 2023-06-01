@@ -82,9 +82,16 @@ exports.postLogin = async (req, res, next) => {
 exports.postSignup = async (req, res, next) => {
   const { fname, lname, email, bio, password, confirmPassword } = req.body;
 
-  console.log(req.body);
+  const userExists = await User.findOne({ email: email });
+  if (userExists) {
+    return res.status(403).json({
+      status: "fail",
+      msg: "Email already used. Try different one.",
+    });
+  }
+
   if (password != confirmPassword) {
-    return res.json({
+    return res.status(400).json({
       status: "fail",
       msg: "Error! Passwords don't match",
     });
@@ -101,6 +108,9 @@ exports.postSignup = async (req, res, next) => {
   });
 
   const token = signToken(user._id);
+  res.cookie("jwtToken", token, {
+    httpOnly: true,
+  });
   res.status(201).json({
     status: "success",
     token,

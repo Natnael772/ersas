@@ -81,7 +81,7 @@ exports.deleteUser = async (req, res, next) => {
 
   User.deleteOne({ _id: userId })
     .then((msg) => {
-      return res.status(201).json({ status: "success", msg: "Deleted user" });
+      return res.status(200).json({ status: "success", msg: "Deleted user" });
     })
     .catch((err) => {
       return res

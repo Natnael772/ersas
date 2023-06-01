@@ -3,10 +3,11 @@ const app = express();
 const User = require("../models/user");
 const Blog = require("../models/blog");
 const Category = require("../models/category");
+const Comment = require("../models/comment");
 
 exports.getBlogs = async (req, res, next) => {
   const blogs = await Blog.find();
-  res.json({ message: "success", blogs: blogs });
+  return res.status(200).json({ status: "success", blogs: blogs });
 };
 
 exports.getBlog = async (req, res, next) => {
@@ -27,8 +28,11 @@ exports.getBlog = async (req, res, next) => {
 };
 
 exports.createBlog = async (req, res, next) => {
-  const { categoryId, title, content, userId } = req.body;
+  // const { categoryId, title, content, userId } = req.body;
   // return res.json({ data: req.body });
+
+  const { categoryId, title, content } = req.body;
+  const userId = req.user._id;
 
   const category = await Category.findOne({ _id: categoryId });
   if (!category) {
@@ -67,7 +71,8 @@ exports.createBlog = async (req, res, next) => {
 };
 
 exports.editBlog = async (req, res, next) => {
-  const { categoryId, title, content, userId } = req.body;
+  const { categoryId, title, content } = req.body;
+  const userId = req.user._id;
   const blogId = req.params.blogId;
 
   //Find blog on the database
@@ -114,3 +119,52 @@ exports.editBlog = async (req, res, next) => {
   });
 };
 exports.deletePost = (req, res, next) => {};
+
+exports.postComment = async (req, res, next) => {
+  const { content } = req.body;
+  const blogId = req.params.blogId;
+  const userId = req.user._id;
+  console.log(content, blogId, userId);
+
+  if (!content) {
+    return res
+      .status(400)
+      .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
+  }
+
+  const blog = await Blog.findOne({ _id: blogId });
+
+  if (!blog) {
+    return res.status(404).json({
+      status: "fail",
+      msg: "No blog with this id",
+    });
+  }
+  const comment = new Comment({
+    content: content,
+    blog: blogId,
+    user: userId,
+  });
+
+  await comment.save(function (err, data) {
+    if (err)
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
+  });
+
+  await Blog.findByIdAndUpdate(blogId, {
+    $push: { comments: comment._id },
+  }).exec(function (err, data) {
+    if (err) {
+      return res.status(500).json({
+        status: "fail",
+        msg: "Something went wrong",
+      });
+    }
+
+    return res
+      .status(201)
+      .json({ status: "success", comment: comment.content });
+  });
+};
