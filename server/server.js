@@ -65,8 +65,6 @@ const run = async () => {
 // "religious",
 // "other",
 
-c;
-
 app.listen(PORT, () => {
   console.log("Server running");
   console.log(DB, PASSWORD, USER);

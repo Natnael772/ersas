@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const User = require("../models/user");
 const Blog = require("../models/blog");
+const Category = require("../models/category");
 
 exports.getBlogs = async (req, res, next) => {
   const blogs = await Blog.find();
@@ -26,22 +27,26 @@ exports.getBlog = async (req, res, next) => {
 };
 
 exports.createBlog = async (req, res, next) => {
-  const {
-    category,
-    title,
-    content,
-    // posted,
-    // updated,
-    // claps,
-    // comments,
-  } = req.body;
+  const { categoryId, title, content, userId } = req.body;
+  // return res.json({ data: req.body });
+
+  const category = await Category.findOne({ _id: categoryId });
+  if (!category) {
+    return res.status(404).json({ status: "fail", msg: "No such category" });
+  }
+  // return res.json({ cat: category });
+
+  const user = await User.findOne({ _id: userId });
+
+  if (!user) {
+    return res.status(404).json({ status: "fail", msg: "User not found" });
+  }
 
   const blog = new Blog({
-    category: category,
-
+    category: categoryId,
     title: title,
     content: content,
-
+    author: userId,
     // posted: posted,
     // updated: updated,
     // claps: 0,
@@ -61,5 +66,4 @@ exports.createBlog = async (req, res, next) => {
   });
 };
 
-exports.editPost = (req, res, next) => {};
 exports.deletePost = (req, res, next) => {};
