@@ -21,3 +21,5 @@ router.get("/users/:userId", superadminController.getUser);
 router.put("/users/:userId", superadminController.updateUser);
 
 router.delete("/users/:userId", superadminController.deleteUser);
+
+module.exports = router

@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/admin", adminRoutes);
-// app.use("/api/v1/superadmin", superadminRoutes);
+app.use("/api/v1/superadmin", superadminRoutes);
 
 //catch unmatched routes
 //error handling middleware
