@@ -51,7 +51,7 @@ exports.addAdmin = async (req, res, next) => {
 };
 
 //Get admins
-const getAdmins = async (req, res, next) => {
+exports.getAdmins = async (req, res, next) => {
   const admins = await Admin.find();
   if (!admins) {
     return res.json({ status: "fail", msg: "No admin found" });

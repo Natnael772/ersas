@@ -5,8 +5,8 @@ const verifySuperadmin = require("../middlewares/verifySuperadmin");
 
 const superadminController = require("../controllers/superadmin");
 
-// router.get("/admins", verify, superadminController.getAdmins)
-router.post("/admin", verifySuperadmin, superadminController.addAdmin);
+router.get("/admins", superadminController.getAdmins);
+router.post("/admins", verifySuperadmin, superadminController.addAdmin);
 
 router.put(
   "/admin/:adminId",
@@ -22,4 +22,4 @@ router.put("/users/:userId", superadminController.updateUser);
 
 router.delete("/users/:userId", superadminController.deleteUser);
 
-module.exports = router
+module.exports = router;
