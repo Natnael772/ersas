@@ -12,4 +12,6 @@ router.post("/blog", verify, userController.createBlog);
 
 router.post("/blogs/:blogId/comment", verify, userController.postComment);
 
+router.post("/blogs/:blogId/clap", verify, userController.postClap);
+
 module.exports = router;

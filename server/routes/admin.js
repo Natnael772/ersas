@@ -1,15 +1,16 @@
 const app = require("express")();
 const router = require("express").Router();
 const verify = require("../middlewares/verify");
+const verifyAdmin = require("../middlewares/verifyAdmin");
 
 const adminController = require("../controllers/admin");
 
-router.get("/users", verify, adminController.getUsers);
-router.get("/users/:userId", verify, adminController.getUser);
+router.get("/users", adminController.getUsers);
+router.get("/users/:userId", adminController.getUser);
 
-router.put("/users/:userId", verify, adminController.updateUser);
+router.put("/users/:userId", verifyAdmin, adminController.updateUser);
 
-router.delete("/users/:userId", verify, adminController.deleteUser);
+router.delete("/users/:userId", verifyAdmin, adminController.deleteUser);
 
 // router.delete("/dummyusers/:userId", verify, (req, res, next) => {
 //   if (req.user.id == req.params.userId || req.user.role == "admin") {

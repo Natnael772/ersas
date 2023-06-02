@@ -7,9 +7,12 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
+const superadminRoutes = require("./routes/superadmin");
+
 const User = require("./models/user");
 const Blog = require("./models/blog");
 const Category = require("./models/category");
+const superadmin = require("./models/superadmin");
 
 require("dotenv").config();
 
@@ -27,45 +30,19 @@ app.use(cookieParser());
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/admin", adminRoutes);
+// app.use("/api/v1/superadmin", superadminRoutes);
 
-const run = async () => {
-  try {
-    // const blog = await Blog.where("category").where("subcategory").equals("PC");
-    // blog.
-    // const user = new User({
-    //   fname: "YYY",
-    //   lname: "Deyas",
-    //   username: "naty",
-    //   followers: "63ee147c8df61fd8307cbfa0",
-    //   blog: "63ee147c8df61fd8307cbfa0",
-    // });
-
-    // user.followers = "63ee147c8df61fd8307cbfa0";
-    // user.blog = "63ee147c8df61fd8307cbfa0";
-    // await user.save();
-    // console.log(user);
-    const user = await User.find({ _id: "63eeaf51487a626a700899fa" }).populate(
-      "blog",
-      "title description"
-    );
-
-    // await user.save();
-    console.log(user);
-  } catch (e) {
-    console.log(e.message);
-  }
-};
-
-// "business",
-// "art",
-// "health",
-// "politics",
-// "entertainment",
-// "education",
-// "relationship",
-// "personal",
-// "religious",
-// "other",
+//catch unmatched routes
+//error handling middleware
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.json({
+    status: "fail",
+    error: {
+      message: "Something went wrong.",
+    },
+  });
+});
 
 app.listen(PORT, () => {
   console.log("Server running");

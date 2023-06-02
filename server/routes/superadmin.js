@@ -1,18 +1,23 @@
 const app = require("express")();
 const router = require("express").Router();
 const verify = require("../middlewares/verify");
+const verifySuperadmin = require("../middlewares/verifySuperadmin");
 
 const superadminController = require("../controllers/superadmin");
 
 // router.get("/admins", verify, superadminController.getAdmins)
-router.post("/admin", verify, superadminController.addAdmin);
+router.post("/admin", verifySuperadmin, superadminController.addAdmin);
 
-router.put("/admin/:adminId", verify, superadminController.updateAdmin);
+router.put(
+  "/admin/:adminId",
+  verifySuperadmin,
+  superadminController.updateAdmin
+);
 // router.delete("/admin/:adminId", verify, superadminController.deleteAdmin)
 
-router.get("/users", verify, adminController.getUsers);
-router.get("/users/:userId", verify, adminController.getUser);
+router.get("/users", superadminController.getUsers);
+router.get("/users/:userId", superadminController.getUser);
 
-router.put("/users/:userId", verify, adminController.updateUser);
+router.put("/users/:userId", superadminController.updateUser);
 
-router.delete("/users/:userId", verify, adminController.deleteUser);
+router.delete("/users/:userId", superadminController.deleteUser);
