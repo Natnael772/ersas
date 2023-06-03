@@ -18,10 +18,11 @@ require("dotenv").config();
 
 console.log(process.env.PORT);
 
+const MONGODB_URL = process.env.MONGODB_URL;
+const PORT = process.env.PORT || 8080;
 const DB = process.env.DB;
 const USER = process.env.DB_USER;
 const PASSWORD = process.env.DB_PASSWORD;
-const PORT = process.env.PORT || 8080;
 
 app.use(bodyparser.urlencoded());
 app.use(express.json());
@@ -32,30 +33,13 @@ app.use("/api/v1", authRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/superadmin", superadminRoutes);
 
-//catch unmatched routes
-//error handling middleware
-app.use(function (error, req, res, next) {
-  res.status(500);
-  res.json({
-    status: "fail",
-    error: {
-      message: "Something went wrong.",
-    },
-  });
-});
-
 app.listen(PORT, () => {
-  console.log("Server running");
+  console.log(`Server running on port ${PORT}`);
   console.log(DB, PASSWORD, USER);
   mongoose
-    .connect(
-      `mongodb+srv://${USER}:${PASSWORD}@cluster0.gy0a5.mongodb.net/${DB}?retryWrites=true&w=majority`
-    )
+    .connect(MONGODB_URL)
     .then((res) => {
       console.log("Connected");
-
-      // run();
-      // console.log(res);
     })
     .catch((err) => {
       console.log(err);

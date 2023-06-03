@@ -33,20 +33,46 @@ const bcrypt = require("bcryptjs");
 
 //Add admin
 exports.addAdmin = async (req, res, next) => {
-  const { fname, lname, email, password } = req.body;
+  const { fname, lname, email, bio, password, confirmPassword } = req.body;
 
-  const hashedPwd = await bcrypt.hash(password, 23);
+  console.log(req.body);
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ status: "fail", msg: "Passwords mismatch" });
+  }
+  const hashedPwd = await bcrypt.hash(password, 12);
+  console.log(hashedPwd);
+
+  const adminExists = await Admin.findOne({ email: email });
+
+  console.log(adminExists);
+  if (adminExists) {
+    return res.status(409).json({
+      status: "fail",
+      msg: "Admin exists with this email. Try a different one.",
+    });
+  }
+
   const admin = new Admin({
     fname: fname,
     lname: lname,
     email: email,
+    bio: bio,
     password: hashedPwd,
   });
-  await admin.save();
-  res.json({
-    status: "success",
-    msg: "Successfully added admin",
-    admin: admin,
+  await admin.save(function (err) {
+    if (err) {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
+    } else {
+      return res.status(201).json({
+        status: "success",
+        msg: "Successfully added admin",
+        admin: admin,
+      });
+    }
   });
 };
 
@@ -60,13 +86,16 @@ exports.getAdmins = async (req, res, next) => {
 };
 
 //Search admin by id
-const getAdmin = async (req, res, next) => {
-  const id = req.params.id;
-  const admin = await Admin.find({ _id: id });
+exports.getAdmin = async (req, res, next) => {
+  const adminId = req.params.adminId;
+  console.log(adminId);
+  const admin = await Admin.findOne({ _id: adminId });
   if (!admin) {
-    return res.json({ status: "fail", msg: "no admin with this id" });
+    return res
+      .status(404)
+      .json({ status: "fail", msg: "no admin with this id" });
   }
-  res.json({
+  res.status(200).json({
     status: "success",
     admin: admin,
   });
