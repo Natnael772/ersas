@@ -5,6 +5,8 @@ const verifySuperadmin = require("../middlewares/verifySuperadmin");
 
 const superadminController = require("../controllers/superadmin");
 
+// router.post("/sign")
+
 router.post("/admin", superadminController.addAdmin);
 
 router.get("/admins", superadminController.getAdmins);
