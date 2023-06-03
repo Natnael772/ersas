@@ -104,7 +104,7 @@ exports.getAdmin = async (req, res, next) => {
 //Update admin
 exports.updateAdmin = async (req, res, next) => {
   const id = req.params.id;
-  const { fname, lname, email, password } = req.body;
+  const { fname, lname, email, bio, password } = req.body;
   const admin = await Admin.find({ _id: id });
 
   if (!admin) {
@@ -112,7 +112,7 @@ exports.updateAdmin = async (req, res, next) => {
   }
 
   //Hasing the password
-  const hashedPwd = await bcrypt.hash(password, 23);
+  const hashedPwd = await bcrypt.hash(password, 12);
 
   //Update data
   admin.fname = fname;
@@ -120,10 +120,16 @@ exports.updateAdmin = async (req, res, next) => {
   admin.email = email;
   admin.password = hashedPwd;
 
-  await admin.save();
-  res.json({
-    status: "success",
-    msg: "Updated successfully",
+  await admin.save(function (err) {
+    if (err) {
+      return res
+        .status(500)
+        .json({ status: "fail", msg: "Something went wrong" });
+    } else {
+      return res
+        .status(201)
+        .json({ status: "success", msg: "Updated successfully" });
+    }
   });
 };
 
