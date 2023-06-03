@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+
 const User = require("../models/user");
 const Blog = require("../models/blog");
 const Category = require("../models/category");
@@ -13,8 +14,8 @@ exports.getBlogs = async (req, res, next) => {
 
 exports.getBlog = async (req, res, next) => {
   const blogId = req.params.blogId;
+
   const blog = await Blog.findOne({ _id: blogId });
-  console.log(blog);
 
   if (!blog) {
     return res.json({
@@ -22,16 +23,14 @@ exports.getBlog = async (req, res, next) => {
       msg: "No blog with this id",
     });
   }
-  res.json({
+
+  res.status(200).json({
     status: "success",
     blog: blog,
   });
 };
 
 exports.createBlog = async (req, res, next) => {
-  // const { categoryId, title, content, userId } = req.body;
-  // return res.json({ data: req.body });
-
   const { categoryId, title, content } = req.body;
   const userId = req.user._id;
 
@@ -39,10 +38,8 @@ exports.createBlog = async (req, res, next) => {
   if (!category) {
     return res.status(404).json({ status: "fail", msg: "No such category" });
   }
-  // return res.json({ cat: category });
 
   const user = await User.findOne({ _id: userId });
-
   if (!user) {
     return res.status(404).json({ status: "fail", msg: "User not found" });
   }
@@ -52,11 +49,8 @@ exports.createBlog = async (req, res, next) => {
     title: title,
     content: content,
     author: userId,
-    // posted: posted,
-    // updated: updated,
-    // claps: 0,
-    // comments: 0,
   });
+
   await blog.save(function (err) {
     if (err) {
       return res
@@ -78,6 +72,7 @@ exports.editBlog = async (req, res, next) => {
 
   //Find blog on the database
   const blog = await Blog.findOne({ _id: blogId });
+
   if (!blog) {
     return res
       .status(404)
@@ -86,12 +81,14 @@ exports.editBlog = async (req, res, next) => {
 
   //Find category on the database
   const category = await Category.findOne({ _id: categoryId });
+
   if (!category) {
     return res.status(404).json({ status: "fail", msg: "No such category" });
   }
 
   //Find the user sending the request
   const user = await User.findOne({ _id: userId });
+
   if (!user) {
     return res
       .status(404)
@@ -122,12 +119,11 @@ exports.editBlog = async (req, res, next) => {
 exports.deletePost = (req, res, next) => {};
 
 exports.postComment = async (req, res, next) => {
-  const { content } = req.body;
-  const blogId = req.params.blogId;
-  const userId = req.user._id;
-  console.log(content, blogId, userId);
-
   if (!content) {
+    const blogId = req.params.blogId;
+    const userId = req.user._id;
+    const { content } = req.body;
+
     return res
       .status(400)
       .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
@@ -141,6 +137,7 @@ exports.postComment = async (req, res, next) => {
       msg: "No blog with this id",
     });
   }
+
   const comment = new Comment({
     content: content,
     blog: blogId,
@@ -173,6 +170,7 @@ exports.postComment = async (req, res, next) => {
 exports.postClap = async (req, res, next) => {
   const blogId = req.params.blogId;
   const userId = req.user._id;
+
   const blog = await Blog.findOne({ _id: blogId });
 
   if (!blog) {

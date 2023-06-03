@@ -37,15 +37,7 @@ exports.postLogin = async (req, res, next) => {
 
   //check if user exists and password is correct
   const user = await User.findOne({ email: email });
-  console.log(user);
-  // if (!user) {
-  //   return res.status(401).json({
-  //     status: "fail",
-  //     msg: "Incorrect email or password",
-  //   });
-  // }
 
-  // const isAuth = await bcrypt.compare(password, user.password);
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return res.status(401).json({
       status: "fail",
@@ -60,17 +52,6 @@ exports.postLogin = async (req, res, next) => {
     token,
   });
 
-  // console.log(email, password);
-  // const user = await User.findOne({ email: email });
-  // console.log(user);
-  // if (!user) {
-  //   return res.json({ status: "fail", msg: "Email or password incorrect" });
-  // }
-  // res.json({ status: "success", user: user });
-  // const isAuth = await bcrypt.compare(password, user.password);
-  // if (!isAuth) {
-  //   return res.json({ status: "fail", msg: "Invalid credentials" });
-  // }
   //Generate access token
   // const accessToken = generateAccessToken(user);
   // //generate refresh token
@@ -114,6 +95,7 @@ exports.postSignup = async (req, res, next) => {
   res.cookie("jwtToken", token, {
     httpOnly: true,
   });
+
   res.status(201).json({
     status: "success",
     token,
@@ -152,9 +134,11 @@ exports.postSignupAdmin = async (req, res, next) => {
   });
 
   const token = signToken(user._id);
+
   res.cookie("jwtToken", token, {
     httpOnly: true,
   });
+
   res.status(201).json({
     status: "success",
     token,
@@ -168,6 +152,7 @@ exports.postSignupSuperadmin = async (req, res, next) => {
   const { fname, lname, email, bio, password, confirmPassword } = req.body;
 
   const userExists = await Superadmin.findOne({ email: email });
+
   if (userExists) {
     return res.status(403).json({
       status: "fail",
@@ -193,9 +178,11 @@ exports.postSignupSuperadmin = async (req, res, next) => {
   });
 
   const token = signToken(user._id);
+
   res.cookie("jwtToken", token, {
     httpOnly: true,
   });
+
   res.status(201).json({
     status: "success",
     token,

@@ -8,23 +8,19 @@ const bcrypt = require("bcryptjs");
 exports.addAdmin = async (req, res, next) => {
   const { fname, lname, email, bio, password, confirmPassword } = req.body;
 
-  console.log(req.body);
-
   if (password !== confirmPassword) {
     return res.status(400).json({ status: "fail", msg: "Passwords mismatch" });
   }
-  const hashedPwd = await bcrypt.hash(password, 12);
-  console.log(hashedPwd);
 
   const adminExists = await Admin.findOne({ email: email });
-
-  console.log(adminExists);
   if (adminExists) {
     return res.status(409).json({
       status: "fail",
       msg: "Admin exists with this email. Try a different one.",
     });
   }
+
+  const hashedPwd = await bcrypt.hash(password, 12);
 
   const admin = new Admin({
     fname: fname,
@@ -33,6 +29,7 @@ exports.addAdmin = async (req, res, next) => {
     bio: bio,
     password: hashedPwd,
   });
+
   await admin.save(function (err) {
     if (err) {
       console.log(err);
@@ -52,23 +49,26 @@ exports.addAdmin = async (req, res, next) => {
 //Get admins
 exports.getAdmins = async (req, res, next) => {
   const admins = await Admin.find();
+
   if (!admins) {
-    return res.json({ status: "fail", msg: "No admin found" });
+    return res.status(404).json({ status: "fail", msg: "No admin found" });
   }
-  res.json({ status: "success", admins: admins });
+
+  return res.status(200).json({ status: "success", admins: admins });
 };
 
 //Search admin by id
 exports.getAdmin = async (req, res, next) => {
   const adminId = req.params.adminId;
-  console.log(adminId);
   const admin = await Admin.findOne({ _id: adminId });
+
   if (!admin) {
     return res
       .status(404)
       .json({ status: "fail", msg: "no admin with this id" });
   }
-  res.status(200).json({
+
+  return res.status(200).json({
     status: "success",
     admin: admin,
   });
@@ -78,10 +78,8 @@ exports.getAdmin = async (req, res, next) => {
 exports.updateAdmin = async (req, res, next) => {
   const adminId = req.params.adminId;
   const { fname, lname, email, bio, password } = req.body;
-  const admin = await Admin.findOne({ _id: adminId });
-  console.log(admin);
 
-  //If the admin doesn't exist
+  const admin = await Admin.findOne({ _id: adminId });
 
   if (!admin) {
     return res
@@ -89,10 +87,8 @@ exports.updateAdmin = async (req, res, next) => {
       .json({ status: "fail", msg: "no admin with this id" });
   }
 
-  //Hasing the password
   const hashedPwd = await bcrypt.hash(password, 12);
 
-  //Update data
   admin.fname = fname;
   admin.lname = lname;
   admin.email = email;
@@ -128,11 +124,13 @@ exports.deleteAdmin = async (req, res, next) => {
       .json({ status: "success", msg: "Admin deleted successfully" });
   } catch (err) {
     console.error(err);
+
     return res
       .status(500)
       .json({ status: "fail", msg: "Something went wrong" });
   }
 };
+
 //Get users/blogggers
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
@@ -179,7 +177,8 @@ exports.updateUser = async (req, res, next) => {
   user.bio = bio;
 
   await user.save();
-  res.status(201).json({ status: "success", user: user });
+
+  return res.status(201).json({ status: "success", user: user });
 };
 
 //Delete user by id
@@ -189,15 +188,13 @@ exports.deleteUser = async (req, res, next) => {
     console.log(userId);
 
     const user = await User.findOneAndRemove({ _id: userId });
+
     if (!user) {
       return res.status(404).json({ status: "fail", msg: "User not found" });
     }
 
-    return res
-      .status(200)
-      .json({ status: "success", msg: "User deleted successfully" });
+    return res.status(201).json({ status: "success", msg: "User deleted " });
   } catch (err) {
-    console.error(err);
     return res
       .status(500)
       .json({ status: "fail", msg: "Something went wrong" });
