@@ -103,12 +103,17 @@ exports.getAdmin = async (req, res, next) => {
 
 //Update admin
 exports.updateAdmin = async (req, res, next) => {
-  const id = req.params.id;
+  const adminId = req.params.adminId;
   const { fname, lname, email, bio, password } = req.body;
-  const admin = await Admin.find({ _id: id });
+  const admin = await Admin.findOne({ _id: adminId });
+  console.log(admin);
+
+  //If the admin doesn't exist
 
   if (!admin) {
-    return res.json({ status: "fail", msg: "no admin with this email" });
+    return res
+      .status(404)
+      .json({ status: "fail", msg: "no admin with this id" });
   }
 
   //Hasing the password
@@ -128,15 +133,38 @@ exports.updateAdmin = async (req, res, next) => {
     } else {
       return res
         .status(201)
-        .json({ status: "success", msg: "Updated successfully" });
+        .json({ status: "success", msg: "Updated successfully", admin: admin });
     }
   });
 };
 
+// Delete admin
+exports.deleteAdmin = async (req, res, next) => {
+  try {
+    const adminId = req.params.adminId;
+    console.log(adminId);
+
+    const admin = await Admin.findOneAndRemove({ _id: adminId });
+
+    if (!admin) {
+      return res.status(404).json({ status: "fail", msg: "Admin not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ status: "success", msg: "Admin deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ status: "fail", msg: "Something went wrong" });
+  }
+};
 //Get users/blogggers
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
-  res.json({
+
+  return res.status(200).json({
     status: "success",
     users: users,
   });
@@ -147,14 +175,14 @@ exports.getUser = async (req, res, next) => {
   const userId = req.params.userId;
   const user = await User.findById(userId);
 
-  //   const user = await User.find({ _id: userId });
   if (!user) {
     return res.json({
       status: "fail",
       msg: "No user with that id",
     });
   }
-  res.json({
+
+  res.status(200).json({
     status: "success",
     user: user,
   });
@@ -162,22 +190,43 @@ exports.getUser = async (req, res, next) => {
 
 //Update user by id
 exports.updateUser = async (req, res, next) => {
-  const { fname, lname, email } = req.body;
+  const { fname, lname, email, bio } = req.body;
   const userId = req.params.userId;
+
   const user = await User.findById(userId);
+  if (!user) {
+    return res
+      .status(404)
+      .json({ status: "fail", msg: "No user with that id" });
+  }
+
   user.fname = fname;
   user.lname = lname;
   user.email = email;
+  user.bio = bio;
+
   await user.save();
-  res.json({ status: "success", user: user });
+  res.status(201).json({ status: "success", user: user });
 };
 
 //Delete user by id
 exports.deleteUser = async (req, res, next) => {
-  const userId = req.params.userId;
-  const user = await User.findByIdAndRemove(userId);
-  res.json({
-    status: "success",
-    user: user,
-  });
+  try {
+    const userId = req.params.userId;
+    console.log(userId);
+
+    const user = await User.findOneAndRemove({ _id: userId });
+    if (!user) {
+      return res.status(404).json({ status: "fail", msg: "User not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ status: "success", msg: "User deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ status: "fail", msg: "Something went wrong" });
+  }
 };

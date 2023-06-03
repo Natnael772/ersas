@@ -12,10 +12,14 @@ router.get("/admin/:adminId", superadminController.getAdmin);
 
 router.put(
   "/admin/:adminId",
-  verifySuperadmin,
+  // verifySuperadmin,
   superadminController.updateAdmin
 );
-// router.delete("/admin/:adminId", verify, superadminController.deleteAdmin)
+router.delete(
+  "/admin/:adminId",
+  // verifySuperadmin,
+  superadminController.deleteAdmin
+);
 
 router.get("/users", superadminController.getUsers);
 router.get("/users/:userId", superadminController.getUser);
