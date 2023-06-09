@@ -4,7 +4,7 @@ const { promisify } = require("util");
 const User = require("../models/user");
 module.exports = async (req, res, next) => {
   //1. Getting token and check if it's there
-  
+
   let token;
   if (
     req.headers.authorization &&
@@ -28,7 +28,8 @@ module.exports = async (req, res, next) => {
 
   // //3 Check if user still exists
 
-  const user = await User.findOne({ id: decoded.id });
+  const user = await User.findOne({ _id: decoded.id });
+  console.log(user);
   if (!user) {
     return res.status(404).json({
       status: "fail",

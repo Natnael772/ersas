@@ -117,13 +117,14 @@ exports.editBlog = async (req, res, next) => {
   });
 };
 exports.deletePost = (req, res, next) => {};
-
 exports.postComment = async (req, res, next) => {
-  if (!content) {
-    const blogId = req.params.blogId;
-    const userId = req.user._id;
-    const { content } = req.body;
+  const blogId = req.params.blogId;
+  const userId = req.user._id;
+  // console.log(req.user);
+  // console.log(req.user._id);
+  const { content } = req.body;
 
+  if (!content) {
     return res
       .status(400)
       .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
@@ -138,140 +139,224 @@ exports.postComment = async (req, res, next) => {
     });
   }
 
-  const comment = new Comment({
-    content: content,
-    blog: blogId,
-    user: userId,
-  });
+  //If the blog has comments before, push this comment onto the existing blog. Else, create a new comment document
 
-  await comment.save(function (err, data) {
-    if (err)
-      return res
-        .status(500)
-        .json({ status: "fail", msg: "Something went wrong" });
-  });
+  const commentExists = await Comment.findOne({ blog: blogId });
+  console.log(commentExists);
+  if (commentExists) {
+    commentExists.comments.push({
+      user: userId,
+      content: content,
+    });
 
-  await Blog.findByIdAndUpdate(blogId, {
-    $push: { comments: comment._id },
-  }).exec(function (err, data) {
-    if (err) {
-      return res.status(500).json({
-        status: "fail",
-        msg: "Something went wrong",
+    commentExists
+      .save()
+      .then(() => {
+        return res.status(201).json({
+          status: "success",
+          // data: {
+          comment: commentExists,
+          blog: blogId,
+          // },
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({ status: "fail" });
       });
-    }
 
-    return res
-      .status(201)
-      .json({ status: "success", comment: comment.content });
-  });
+    // await commentExists.save(function (err, data) {
+    //   if (err)
+    //     return res
+    //       .status(500)
+    //       .json({ status: "fail", msg: "Something went wrong" });
+    //   else {
+    //     console.log(commentExists);
+    //     return res.status(201).json({
+    //       status: "success",
+    //       data: {
+    //         blog: blogId,
+    //         content: content,
+    //       },
+    //     });
+    //   }
+    // });
+  } else {
+    //If the blog has no comment, create new comment
+    const comment = new Comment({
+      blog: blogId,
+      comments: {
+        content: content,
+        user: userId,
+      },
+    });
+
+    await comment.save(function (err, data) {
+      if (err)
+        return res
+          .status(500)
+          .json({ status: "fail", msg: "Something went wrong" });
+      else {
+        return res.status(201).json({ status: "success", data: comment });
+      }
+    });
+  }
 };
+
+// exports.postComment = async (req, res, next) => {
+//   const blogId = req.params.blogId;
+//   const userId = req.user._id;
+//   const { content } = req.body;
+
+//   if (!content) {
+//     return res
+//       .status(400)
+//       .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
+//   }
+
+//   try {
+//     const blog = await Blog.findById(blogId);
+
+//     if (!blog) {
+//       return res.status(404).json({
+//         status: "fail",
+//         msg: "No blog with this id",
+//       });
+//     }
+
+//     const comment = {
+//       user: userId,
+//       content: content,
+//     };
+
+//     const updatedBlog = await Blog.findByIdAndUpdate(
+//       blogId,
+//       { $push: { comment: comment } },
+//       { new: true }
+//     );
+
+//     return res.status(201).json({
+//       status: "success",
+//       data: {
+//         blog: updatedBlog,
+//         // comment: comment,
+//       },
+//     });
+//   } catch (err) {
+//     return res
+//       .status(500)
+//       .json({ status: "fail", msg: "Something went wrong" });
+//   }
+// };
 
 exports.postClap = async (req, res, next) => {
   const blogId = req.params.blogId;
   const userId = req.user._id;
 
   const blog = await Blog.findOne({ _id: blogId });
+  console.log(blog);
 
   if (!blog) {
     return res.status(404).json({
       status: "fail",
       msg: "No blog with this id",
     });
-
-    // const clapIndex = blog.claps.indexOf(userId);
-    // console.log(`Blog index: ${typeof []}`);
-
-    // const userClapped = blogs.claps.filter(user);
-
-    // if (clapIndex !== -1) {
-    //   // console.log(`Index: ${clapIndex}`);
-    //   // blog.claps.push(userId);
-    // } else {
-    //   // console.log(`Index: ${clapIndex}`);
-    //   blog.claps.splice(clapIndex, 1);
-    //   // blog.claps.push(userId);
-    // }
-
-    // let clapped, handleClap;
-    // const clapIndex = blog.claps.indexOf(userId);
-    // if (clapIndex === -1) {
-    //   clapped = false;
-    //   handleClap = { $push: blog.claps.userId };
-    //   const clap = new Clap({
-    //     user: userId,
-    //     blog: blogId,
-    //   });
-    //   clap.save().then(() => {
-    //     blog
-    //       .findByIdAndUpdate(blogId, { $push: blog.claps.userId })
-    //       .then((data) => {
-    //         return res
-    //           .status(201)
-    //           .json({ status: "success", msg: "clapped", data: data })
-    //           .catch((err) =>
-    //             res
-    //               .status(500)
-    //               .json({ status: "fail", msg: "Something went wrong" })
-    //           );
-    //       });
-    //   });
-    // } else {
-    //   clapped = true;
-    //   console.log(`clapped ${clapped}`);
-    //   handleClap = {
-    //     $pull: blog.claps.userId,
-    //   };
-    //   Clap.deleteOne({ user: userId })
-    //     .then(() => {
-    //       blog.findByIdAndUpdate(blogId, handleClap).then((data) => {
-    //         return res
-    //           .status(201)
-    //           .json({ status: "success", msg: "unclapped", data: data })
-    //           .catch((err) =>
-    //             res
-    //               .status(500)
-    //               .json({ status: "fail", msg: "Something went wrong" })
-    //           );
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       return res.status(500).json({ status: "fail" });
-    //     });
-    // }
-
-    // console.log(clapped);
-    // await blog.findByIdAndUpdate(blogId, handleClap);
-
-    // const clap = new Clap({
-    //   user: userId,
-    //   blog: blogId,
-    // });
-    // await clap
-    //   .save()
-    //   .then((data) => res.json(data))
-    //   .catch((err) => res.json({ status: "fail" }));
-
-    // await blog
-    //   .save()
-    //   .then((data) => res.json(data))
-    //   .catch((err) => res.json({ status: "fail" }));
-
-    // await blog.save(function (err, data) {
-    //   if (err) {
-    //     return res
-    //       .status(500)
-    //       .json({ status: "fail", msg: "Something went wrong" });
-    //   }
-    //   return res
-    //     .status(201)
-    //     .json({ status: "success", msg: "Done successfully" });
-    // });
-    res
-      .status(201)
-      .json({ status: "success", msg: "clap operation successful" });
   }
+  const userClapped = await blog.claps.findOne({ _id: userId });
+  console.log(userClapped);
+
+  Claps.findOne({ _id: userId });
+
+  // const clapIndex = blog.claps.indexOf(userId);
+  // console.log(`Blog index: ${clapIndex}`);
+
+  // const userClapped = blogs.claps.filter(user);
+
+  // if (clapIndex !== -1) {
+  //   console.log(`Index: ${clapIndex}`);
+  //   blog.claps.push(userId);
+  // } else {
+  //   console.log(`Index: ${clapIndex}`);
+  //   blog.claps.splice(clapIndex, 1);
+  //   // blog.claps.push(userId);
+  // }
+
+  // let clapped, handleClap;
+  // const clapIndex = blog.claps.indexOf(userId);
+  // if (clapIndex === -1) {
+  //   clapped = false;
+  //   handleClap = { $push: blog.claps.userId };
+  //   const clap = new Clap({
+  //     user: userId,
+  //     blog: blogId,
+  //   });
+  //   clap.save().then(() => {
+  //     blog
+  //       .findByIdAndUpdate(blogId, { $push: blog.claps.userId })
+  //       .then((data) => {
+  //         return res
+  //           .status(201)
+  //           .json({ status: "success", msg: "clapped", data: data })
+  //           .catch((err) =>
+  //             res
+  //               .status(500)
+  //               .json({ status: "fail", msg: "Something went wrong" })
+  //           );
+  //       });
+  //   });
+  // } else {
+  //   clapped = true;
+  //   console.log(`clapped ${clapped}`);
+  //   handleClap = {
+  //     $pull: blog.claps.userId,
+  //   };
+  //   Clap.deleteOne({ user: userId })
+  //     .then(() => {
+  //       blog.findByIdAndUpdate(blogId, handleClap).then((data) => {
+  //         return res
+  //           .status(201)
+  //           .json({ status: "success", msg: "unclapped", data: data })
+  //           .catch((err) =>
+  //             res
+  //               .status(500)
+  //               .json({ status: "fail", msg: "Something went wrong" })
+  //           );
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       return res.status(500).json({ status: "fail" });
+  //     });
+  // }
+
+  // console.log(clapped);
+  // await blog.findByIdAndUpdate(blogId, handleClap);
+
+  // const clap = new Clap({
+  //   user: userId,
+  //   blog: blogId,
+  // });
+  // await clap
+  //   .save()
+  //   .then((data) => res.json(data))
+  //   .catch((err) => res.json({ status: "fail" }));
+
+  // await blog
+  //   .save()
+  //   .then((data) => res.json(data))
+  //   .catch((err) => res.json({ status: "fail" }));
+
+  // await blog.save(function (err, data) {
+  //   if (err) {
+  //     return res
+  //       .status(500)
+  //       .json({ status: "fail", msg: "Something went wrong" });
+  //   }
+  //   return res
+  //     .status(201)
+  //     .json({ status: "success", msg: "Done successfully" });
+  // });
+  res.status(201).json({ status: "success", msg: "clap operation successful" });
 };
+
 // exports.postFollow = async (req, res, next) => {
 //   const userId = req.user._id;
 //   const userToFollowId = req.params.userToFollowId;
