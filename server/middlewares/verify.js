@@ -26,8 +26,7 @@ module.exports = async (req, res, next) => {
   const decoded = await jwt.verify(token, process.env.JWT_SECRET);
   console.log(decoded);
 
-  // //3 Check if user still exists
-
+  //3 Check if user still exists
   const user = await User.findOne({ _id: decoded.id });
   console.log(user);
   if (!user) {
