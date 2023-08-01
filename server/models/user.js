@@ -3,11 +3,11 @@ const Blog = require("../models/blog");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  fname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lname: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -22,26 +22,26 @@ const userSchema = new Schema({
   },
   bio: String,
 
-  links: {
-    twitter: String,
-    facebook: String,
-    linkedin: String,
-  },
-  // photo: String,
+  // socialMediaLinks: {
+  //   twitter: String,
+  //   facebook: String,
+  //   linkedin: String,
+  //   telegram:String,
+  //   instagram:String
+  // },
 
-  followers: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  following: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
+  profilePhoto: String,
 
-  blogs: [
+  followers: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Blog",
+      ref: "User",
+    },
+  ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
 });
