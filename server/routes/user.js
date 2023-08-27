@@ -12,4 +12,6 @@ const {
 
 // const verify = require("../middlewares/verify");
 
+router.get("/blogs", getBlogs);
+
 module.exports = router;
