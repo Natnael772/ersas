@@ -12,7 +12,6 @@ const superadminRoutes = require("./routes/superadmin");
 const User = require("./models/user");
 const Blog = require("./models/blog");
 const Category = require("./models/category");
-const superadmin = require("./models/superadmin");
 
 require("dotenv").config();
 
