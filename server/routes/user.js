@@ -18,4 +18,6 @@ router.get("/blogs/:blogId", getBlog);
 
 router.put("/blogs/:blogId", editBlog);
 
+router.post("/blog", createBlog);
+
 module.exports = router;
