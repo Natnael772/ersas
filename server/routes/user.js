@@ -1,17 +1,15 @@
 const router = require("express").Router();
-const userController = require("../controllers/user");
-const verify = require("../middlewares/verify");
 
-router.get("/blogs", userController.getBlogs);
+const {
+  getBlogs,
+  getBlog,
+  editBlog,
+  createBlog,
+  postComment,
+  clap,
+  followUser,
+} = require("../controllers/user");
 
-router.get("/blogs/:blogId", userController.getBlog);
-
-router.put("/blogs/:blogId", verify, userController.editBlog);
-
-router.post("/blog", verify, userController.createBlog);
-
-router.post("/blogs/:blogId/comment", verify, userController.postComment);
-
-router.post("/blogs/:blogId/clap", verify, userController.postClap);
+// const verify = require("../middlewares/verify");
 
 module.exports = router;
