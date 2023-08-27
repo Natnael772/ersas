@@ -21,20 +21,31 @@ exports.getUsers = async (req, res, next) => {
   }
 };
 
+//Get specific user by id
 exports.getUser = async (req, res, next) => {
   const userId = req.params.userId;
-  const user = await User.findById(userId);
+  try {
+    const user = await User.findById(userId);
 
-  if (!user) {
-    return res.status(404).json({
+    if (!user) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No user with that id",
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "user retrieved",
+      data: {
+        user: user,
+      },
+    });
+  } catch {
+    return res.status(500).json({
       status: "fail",
-      msg: "No user with that id",
+      msg: "Something went wrong",
     });
   }
-  return res.status(200).json({
-    status: "success",
-    user: user,
-  });
 };
 
 exports.updateUser = async (req, res, next) => {
