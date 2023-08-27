@@ -145,137 +145,50 @@ exports.editBlog = async (req, res, next) => {
   }
 };
 exports.deletePost = (req, res, next) => {};
+
 exports.postComment = async (req, res, next) => {
   const blogId = req.params.blogId;
   const userId = req.user._id;
+  const { content } = req.body;
   // console.log(req.user);
   // console.log(req.user._id);
-  const { content } = req.body;
 
   if (!content) {
-    return res
-      .status(400)
-      .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
-  }
-
-  const blog = await Blog.findOne({ _id: blogId });
-
-  if (!blog) {
-    return res.status(404).json({
+    return res.status(400).json({
       status: "fail",
-      msg: "No blog with this id",
+      msg: "Comment can't be empty. Enter comment.",
     });
   }
 
-  //If the blog has comments before, push this comment onto the existing blog. Else, create a new comment document
+  try {
+    const blog = await Blog.findOne({ _id: blogId });
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        msg: "No blog with this id",
+      });
+    }
 
-  const commentExists = await Comment.findOne({ blog: blogId });
-  console.log(commentExists);
-  if (commentExists) {
-    commentExists.comments.push({
-      user: userId,
+    const comment = await Comment.create({
+      authorId: authorId,
+      blogId: blogId,
       content: content,
     });
 
-    commentExists
-      .save()
-      .then(() => {
-        return res.status(201).json({
-          status: "success",
-          // data: {
-          comment: commentExists,
-          blog: blogId,
-          // },
-        });
-      })
-      .catch((err) => {
-        return res.status(500).json({ status: "fail" });
-      });
-
-    // await commentExists.save(function (err, data) {
-    //   if (err)
-    //     return res
-    //       .status(500)
-    //       .json({ status: "fail", msg: "Something went wrong" });
-    //   else {
-    //     console.log(commentExists);
-    //     return res.status(201).json({
-    //       status: "success",
-    //       data: {
-    //         blog: blogId,
-    //         content: content,
-    //       },
-    //     });
-    //   }
-    // });
-  } else {
-    //If the blog has no comment, create new comment
-    const comment = new Comment({
-      blog: blogId,
-      comments: {
-        content: content,
-        user: userId,
+    return res.status(201).json({
+      status: "success",
+      message: "commented on blog",
+      data: {
+        comment: commment,
       },
     });
-
-    await comment.save(function (err, data) {
-      if (err)
-        return res
-          .status(500)
-          .json({ status: "fail", msg: "Something went wrong" });
-      else {
-        return res.status(201).json({ status: "success", data: comment });
-      }
+  } catch {
+    return res.status(500).json({
+      status: "fail",
+      message: "something went wrong",
     });
   }
 };
-
-// exports.postComment = async (req, res, next) => {
-//   const blogId = req.params.blogId;
-//   const userId = req.user._id;
-//   const { content } = req.body;
-
-//   if (!content) {
-//     return res
-//       .status(400)
-//       .json({ status: "fail", msg: "Comment can't be empty. Enter comment." });
-//   }
-
-//   try {
-//     const blog = await Blog.findById(blogId);
-
-//     if (!blog) {
-//       return res.status(404).json({
-//         status: "fail",
-//         msg: "No blog with this id",
-//       });
-//     }
-
-//     const comment = {
-//       user: userId,
-//       content: content,
-//     };
-
-//     const updatedBlog = await Blog.findByIdAndUpdate(
-//       blogId,
-//       { $push: { comment: comment } },
-//       { new: true }
-//     );
-
-//     return res.status(201).json({
-//       status: "success",
-//       data: {
-//         blog: updatedBlog,
-//         // comment: comment,
-//       },
-//     });
-//   } catch (err) {
-//     return res
-//       .status(500)
-//       .json({ status: "fail", msg: "Something went wrong" });
-//   }
-// };
-
 exports.postClap = async (req, res, next) => {
   const blogId = req.params.blogId;
   const userId = req.user._id;
