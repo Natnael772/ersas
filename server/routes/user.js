@@ -20,4 +20,6 @@ router.put("/blogs/:blogId", editBlog);
 
 router.post("/blog", createBlog);
 
+router.post("/blogs/:blogId/comment", postComment);
+
 module.exports = router;
