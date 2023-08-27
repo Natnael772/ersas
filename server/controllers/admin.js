@@ -1,15 +1,26 @@
-const Admin = require("../models/admin");
+// const Admin = require("../models/admin");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+//Get all users
 exports.getUsers = async (req, res, next) => {
-  const users = await User.find();
-
-  return res.status(200).json({
-    status: "success",
-    users: users,
-  });
+  try {
+    const users = await User.findAll();
+    return res.status(200).json({
+      status: "success",
+      message: "users retrieved",
+      data: {
+        users: users,
+      },
+    });
+  } catch {
+    return res.status(500).json({
+      status: "fail",
+      msg: "Something went wrong",
+    });
+  }
 };
+
 exports.getUser = async (req, res, next) => {
   const userId = req.params.userId;
   const user = await User.findById(userId);
