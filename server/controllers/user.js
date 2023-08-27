@@ -101,55 +101,48 @@ exports.createBlog = async (req, res, next) => {
 };
 
 exports.editBlog = async (req, res, next) => {
-  const { categoryId, title, content } = req.body;
-  const userId = req.user._id;
   const blogId = req.params.blogId;
+  const userId = req.user._id;
+  const { categoryId, title, content } = req.body;
 
-  //Find blog on the database
-  const blog = await Blog.findOne({ _id: blogId });
+  try {
+    //Find blog on the database
+    const blog = await Blog.findOne({ _id: blogId });
 
-  if (!blog) {
-    return res
-      .status(404)
-      .json({ status: "fail", msg: "No blog with this id" });
-  }
-
-  //Find category on the database
-  const category = await Category.findOne({ _id: categoryId });
-
-  if (!category) {
-    return res.status(404).json({ status: "fail", msg: "No such category" });
-  }
-
-  //Find the user sending the request
-  const user = await User.findOne({ _id: userId });
-
-  if (!user) {
-    return res
-      .status(404)
-      .json({ status: "fail", msg: "No user with this id" });
-  }
-
-  //Edit blog
-  blog.category = categoryId;
-  blog.title = title;
-  blog.content = content;
-  blog.author = userId;
-
-  //Save blog
-  await blog.save(function (err) {
-    if (err) {
+    if (!blog) {
       return res
-        .status(500)
-        .json({ status: "fail", msg: "Something went wrong" });
+        .status(404)
+        .json({ status: "fail", message: "No blog with this id" });
     }
 
+    //Find category on the database
+    const category = await Category.findOne({ _id: categoryId });
+    if (!category) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "No such category" });
+    }
+
+    //Edit blog
+    blog.categoryId = categoryId;
+    blog.title = title;
+    blog.content = content;
+
+    //Save blog
+    await blog.save();
+
     //Send the response
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
-      blog: blog,
+      data: {
+        blog: blog,
+      },
     });
-  });
+  } catch {
+    return res
+      .status(500)
+      .json({ status: "fail", msg: "Something went wrong" });
+  }
 };
 exports.deletePost = (req, res, next) => {};
 exports.postComment = async (req, res, next) => {
