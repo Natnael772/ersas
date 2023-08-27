@@ -14,4 +14,6 @@ const {
 
 router.get("/blogs", getBlogs);
 
+router.get("/blogs/:blogId", getBlog);
+
 module.exports = router;
