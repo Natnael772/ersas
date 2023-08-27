@@ -16,4 +16,6 @@ router.get("/blogs", getBlogs);
 
 router.get("/blogs/:blogId", getBlog);
 
+router.put("/blogs/:blogId", editBlog);
+
 module.exports = router;
