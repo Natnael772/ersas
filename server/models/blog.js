@@ -4,40 +4,42 @@ const Schema = mongoose.Schema;
 
 const blogSchema = new Schema(
   {
-    category: {
-      type: mongoose.Schema.ObjectId,
-      ref: " Category",
-    },
     title: String,
     content: String,
-    author: {
+    image: String,
+    categoryId: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Category",
+    },
+    authorId: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
-      required: true,
     },
 
-    comments: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
-        },
-        content: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    claps: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
-        },
-      },
-    ],
+    // comments: [
+    //   {
+    //     user: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "User",
+    //       required: true,
+    //     },
+    //     content: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //   },
+    // ],
+    // claps: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true,
+    //   },
+    // ],
+    // clapCount: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
   {
     timestamps: true,
