@@ -68,36 +68,36 @@ exports.getBlog = async (req, res, next) => {
 exports.createBlog = async (req, res, next) => {
   const { categoryId, title, content } = req.body;
   const userId = req.user._id;
-
-  const category = await Category.findOne({ _id: categoryId });
-  if (!category) {
-    return res.status(404).json({ status: "fail", msg: "No such category" });
-  }
-
-  const user = await User.findOne({ _id: userId });
-  if (!user) {
-    return res.status(404).json({ status: "fail", msg: "User not found" });
-  }
-
-  const blog = new Blog({
-    category: categoryId,
-    title: title,
-    content: content,
-    author: userId,
-  });
-
-  await blog.save(function (err) {
-    if (err) {
+  try {
+    const category = await Category.findOne({ _id: categoryId });
+    if (!category) {
       return res
-        .status(500)
-        .json({ status: "fail", msg: "Something went wrong" });
+        .status(404)
+        .json({ status: "fail", message: "No such category" });
     }
 
-    res.status(201).json({
-      status: "success",
-      blog: blog,
+    const blog = new Blog({
+      categoryId: categoryId,
+      title: title,
+      content: content,
+      author: userId,
     });
-  });
+
+    await blog.save();
+
+    return res.status(201).json({
+      status: "success",
+      message: "blog created",
+      data: {
+        blog: blog,
+      },
+    });
+  } catch {
+    return res.status(500).json({
+      status: "fail",
+      message: "something went wrong",
+    });
+  }
 };
 
 exports.editBlog = async (req, res, next) => {
