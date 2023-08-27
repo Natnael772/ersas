@@ -36,22 +36,33 @@ exports.getBlogs = async (req, res, next) => {
   }
 };
 
+//get Specific blog by id
 exports.getBlog = async (req, res, next) => {
   const blogId = req.params.blogId;
 
-  const blog = await Blog.findOne({ _id: blogId });
+  try {
+    const blog = await Blog.findOne({ _id: blogId });
 
-  if (!blog) {
-    return res.json({
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        msg: "No blog with this id",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "blog retrieved",
+      data: {
+        blog: blog,
+      },
+    });
+  } catch {
+    return res.status(500)({
       status: "fail",
-      msg: "No blog with this id",
+      message: "something went wrong",
     });
   }
-
-  res.status(200).json({
-    status: "success",
-    blog: blog,
-  });
 };
 
 exports.createBlog = async (req, res, next) => {
