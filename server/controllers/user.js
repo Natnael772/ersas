@@ -235,10 +235,43 @@ exports.clap = async (req, res, next) => {
   });
 };
 
-// exports.postFollow = async (req, res, next) => {
-//   const userId = req.user._id;
-//   const userToFollowId = req.params.userToFollowId;
-//   const user = await User.findOne({ _id: userId });
+exports.followUser = async (req, res) => {
+  const userId = req.user._id;
+  const userToFollowId = req.params.userId;
 
-//   const userToFollow = await User.findOne({ _id: userToFollowId });
-// };
+  try {
+    // const userToFollow = await Following.findOne({
+    //   userId: userId,
+    //   followingId: userToFollow,
+    //   follo
+    // });
+    const userToFollow = await Following.findOne({
+      userId: userId,
+      followingId: userToFollowId,
+    });
+
+    //if the user previously followed that user, unfollow and remove it from db
+    if (userToFollow) {
+      await userToFollow.remove();
+      return res.status(201).json({
+        status: "success",
+        message: "unfollowd the user",
+      });
+    }
+
+    //if the user hasn't followed before, follow and store it
+    const following = await Following.create({
+      userId: userId,
+      followingId: userToFollowId,
+    });
+    return res.status(201).json({
+      status: "success",
+      message: "followd the user",
+    });
+  } catch {
+    return res.status(500).json({
+      status: "fail",
+      message: "something went wrong",
+    });
+  }
+};
