@@ -22,4 +22,6 @@ router.post("/blog", createBlog);
 
 router.post("/blogs/:blogId/comment", postComment);
 
+router.post("/blogs/:blogId/clap", clap);
+
 module.exports = router;
