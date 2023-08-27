@@ -189,113 +189,50 @@ exports.postComment = async (req, res, next) => {
     });
   }
 };
-exports.postClap = async (req, res, next) => {
+
+exports.clap = async (req, res, next) => {
   const blogId = req.params.blogId;
   const userId = req.user._id;
 
-  const blog = await Blog.findOne({ _id: blogId });
-  console.log(blog);
+  try {
+    const blog = await Blog.findOne({ _id: blogId });
+    console.log(blog);
 
-  if (!blog) {
-    return res.status(404).json({
-      status: "fail",
-      msg: "No blog with this id",
+    if (!blog) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No blog with this id",
+      });
+    }
+
+    //check if user previously clapped or not
+    const userClapped = await Clap.findOne({ userId: userId, blogId: blogId });
+    console.log(userClapped);
+
+    //if he previously clapped, remove the clap
+    if (userClapped) {
+      await userClapped.remove();
+      return res.status(201).json({
+        status: "success",
+        message: "you removed clap from the blog",
+      });
+    }
+
+    //if he hasn't clapped before, clap and store it
+    const clap = await Clap.create({
+      userId: userId,
+      blogId: blogId,
     });
-  }
-  const userClapped = await blog.claps.findOne({ _id: userId });
-  console.log(userClapped);
 
-  Claps.findOne({ _id: userId });
-
-  // const clapIndex = blog.claps.indexOf(userId);
-  // console.log(`Blog index: ${clapIndex}`);
-
-  // const userClapped = blogs.claps.filter(user);
-
-  // if (clapIndex !== -1) {
-  //   console.log(`Index: ${clapIndex}`);
-  //   blog.claps.push(userId);
-  // } else {
-  //   console.log(`Index: ${clapIndex}`);
-  //   blog.claps.splice(clapIndex, 1);
-  //   // blog.claps.push(userId);
-  // }
-
-  // let clapped, handleClap;
-  // const clapIndex = blog.claps.indexOf(userId);
-  // if (clapIndex === -1) {
-  //   clapped = false;
-  //   handleClap = { $push: blog.claps.userId };
-  //   const clap = new Clap({
-  //     user: userId,
-  //     blog: blogId,
-  //   });
-  //   clap.save().then(() => {
-  //     blog
-  //       .findByIdAndUpdate(blogId, { $push: blog.claps.userId })
-  //       .then((data) => {
-  //         return res
-  //           .status(201)
-  //           .json({ status: "success", msg: "clapped", data: data })
-  //           .catch((err) =>
-  //             res
-  //               .status(500)
-  //               .json({ status: "fail", msg: "Something went wrong" })
-  //           );
-  //       });
-  //   });
-  // } else {
-  //   clapped = true;
-  //   console.log(`clapped ${clapped}`);
-  //   handleClap = {
-  //     $pull: blog.claps.userId,
-  //   };
-  //   Clap.deleteOne({ user: userId })
-  //     .then(() => {
-  //       blog.findByIdAndUpdate(blogId, handleClap).then((data) => {
-  //         return res
-  //           .status(201)
-  //           .json({ status: "success", msg: "unclapped", data: data })
-  //           .catch((err) =>
-  //             res
-  //               .status(500)
-  //               .json({ status: "fail", msg: "Something went wrong" })
-  //           );
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       return res.status(500).json({ status: "fail" });
-  //     });
-  // }
-
-  // console.log(clapped);
-  // await blog.findByIdAndUpdate(blogId, handleClap);
-
-  // const clap = new Clap({
-  //   user: userId,
-  //   blog: blogId,
-  // });
-  // await clap
-  //   .save()
-  //   .then((data) => res.json(data))
-  //   .catch((err) => res.json({ status: "fail" }));
-
-  // await blog
-  //   .save()
-  //   .then((data) => res.json(data))
-  //   .catch((err) => res.json({ status: "fail" }));
-
-  // await blog.save(function (err, data) {
-  //   if (err) {
-  //     return res
-  //       .status(500)
-  //       .json({ status: "fail", msg: "Something went wrong" });
-  //   }
-  //   return res
-  //     .status(201)
-  //     .json({ status: "success", msg: "Done successfully" });
-  // });
-  res.status(201).json({ status: "success", msg: "clap operation successful" });
+    return res.status(201).json({
+      status: "success",
+      message: "clapped on the blog successfully",
+    });
+  } catch {}
+  return res.status(500).json({
+    status: "fail",
+    message: "something went wrong",
+  });
 };
 
 // exports.postFollow = async (req, res, next) => {
