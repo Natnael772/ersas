@@ -1,3 +1,5 @@
+//User controller
+
 const express = require("express");
 const app = express();
 
@@ -6,10 +8,32 @@ const Blog = require("../models/blog");
 const Category = require("../models/category");
 const Comment = require("../models/comment");
 const Clap = require("../models/clap");
+const Follower = require("../models/follower");
+const Following = require("../models/following");
 
 exports.getBlogs = async (req, res, next) => {
-  const blogs = await Blog.find();
-  return res.status(200).json({ status: "success", blogs: blogs });
+  try {
+    const blogs = await Blog.findAll();
+    if (!blogs) {
+      return res.status(404).json({
+        status: "fail",
+        message: "no blog found",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "blogs retrieved",
+      data: {
+        blogs: blogs,
+      },
+    });
+  } catch {
+    return res.status(500).json({
+      status: "fail",
+      message: "something went wrong",
+    });
+  }
 };
 
 exports.getBlog = async (req, res, next) => {
