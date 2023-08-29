@@ -8,7 +8,6 @@ const Blog = require("../models/blog");
 const Category = require("../models/category");
 const Comment = require("../models/comment");
 const Clap = require("../models/clap");
-const Follower = require("../models/follower");
 const Following = require("../models/following");
 
 exports.getBlogs = async (req, res, next) => {
